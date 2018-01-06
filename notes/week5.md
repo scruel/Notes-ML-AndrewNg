@@ -1,4 +1,7 @@
+[TOC]
+
 # 9 Neural Networks：Learning
+
 ## 9.1 Cost Function
 
 ## 9.2 Backpropagation Algorithm

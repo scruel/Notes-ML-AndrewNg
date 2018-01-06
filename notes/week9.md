@@ -1,4 +1,7 @@
+[TOC]
+
 # 15 Anomaly Detection
+
 ## 15.1 Problem Motivation
 
 ## 15.2 Gaussian Distribution
