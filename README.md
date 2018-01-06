@@ -9,6 +9,6 @@
 
 Andrew Ng's machine learning course on Coursera.
 
-Including assignments and notes, notes is WIP.
+Including assignments and notes, notes are WIP.
 
-All markdown files based on Typora, you can read my notes by it or other markdown editor like it.
+you can read it by Typora or any other similar markdown editor.
