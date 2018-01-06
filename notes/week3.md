@@ -1,4 +1,7 @@
+[TOC]
+
 # 6 Logistic Regression
+
 ## 6.1 Classification
 
 ## 6.2 Hypothesis Representation

@@ -1,4 +1,7 @@
+[TOC]
+
 # 11 Machine Learning System Design
+
 ## 11.1 Prioritizing What to Work On
 
 ## 11.2 Error Analysis

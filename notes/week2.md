@@ -1,4 +1,7 @@
+[TOC]
+
 # 4 Linear Regression with Multiple Variables
+
 ## 4.1 Multiple Features
 
 ## 4.2 Gradient Descent for Multiple Variables

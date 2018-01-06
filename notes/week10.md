@@ -1,4 +1,7 @@
+[TOC]
+
 # 17 Large Scale Machine Learning
+
 ## 17.1 Learning With Large Datasets
 
 ## 17.2 Stochastic Gradient Descent
