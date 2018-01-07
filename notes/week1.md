@@ -71,7 +71,7 @@
 
    在房屋价格预测的例子中，给出了一系列的房屋面基数据，根据这些数据来预测任意面积的房屋价格。给出照片-年龄数据集，预测给定照片的年龄。
 
-   ![](image\20180105_194712.png)
+   ![](image/20180105_194712.png)
 
 2. 分类问题(Classification)
 
@@ -81,7 +81,7 @@
 
    视频中举了癌症肿瘤这个例子，针对诊断结果，分别分类为良性或恶性。还例如垃圾邮件分类问题，也同样属于监督学习中的分类问题。
 
-   ![](image\20180105_194839.png)
+   ![](image/20180105_194839.png)
 
 视频中提到**支持向量机**这个算法，旨在解决当特征量很大的时候(特征即如癌症例子中的肿块大小，颜色，气味等各种特征)，计算机内存一定会不够用的情况。**支持向量机能让计算机处理无限多个特征。**
 
@@ -165,7 +165,7 @@ $h_\theta(x)=\theta_0+\theta_1x$，为其中一种可行的表达式。
 >
 > $\left(x, y\right)$: 训练集中的实例
 >
-> $\left(x^\left(i\right), y^\left(i\right)\right)$: 训练集中的第 $i$ 个样本实例
+> $\left(x^\left(i\right),y^\left(i\right)\right)$: 训练集中的第 $i$ 个样本实例
 
 ![](image/20180105_224648.png)
 
@@ -173,9 +173,9 @@ $h_\theta(x)=\theta_0+\theta_1x$，为其中一种可行的表达式。
 
 为了求解最小值，引入损失函数(Cost Function)概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：
 
-$$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{y}_{i}- y_{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2$$ 
+$$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2$$ 
 
-> 系数 $\frac{1}{2}$ 存在与否都不会影响结果，这里是为了在应用梯度下降时便于求解，平方的导数会抵消掉 $\frac{1}{2}$ 。
+> 系数 $\frac{1}{2}​$ 存在与否都不会影响结果，这里是为了在应用梯度下降时便于求解，平方的导数会抵消掉 $\frac{1}{2}​$ 。
 
 讨论到这里，我们的问题就转化成了**求解 $J\left( \theta_0, \theta_1  \right)$ 的最小值**。
 
@@ -202,7 +202,7 @@ $$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \ha
 
 给定数据集：
 
-![](image\20180106_091307.png)
+![](image/20180106_091307.png)
 
 参数在 $\theta_0$ 不恒为 $0$ 时损失函数 $J\left(\theta\right)$ 关于 $\theta_0, \theta_1$ 的3-D图像，图像中的高度为损失函数的值。
 
