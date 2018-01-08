@@ -14,9 +14,9 @@ https://www.coursera.org/learn/machine-learning
 2. 所有课后作业(assignments)都已提交并通过 Coursera 编程测验。仅供参考，请勿抄袭。
 
 
-笔记基于支持 ${\displaystyle \mathrm {L\!\!^{{}_{{}^{\scriptstyle A}}}\!\!\!\!\!\;\;T\!_{\displaystyle E}\!X} }$ 的 markdown 编辑器 [Typora][2]，其他类似的编辑器也可以阅读，不过可能会由一些排版问题。
+笔记基于支持 LaTeX 的 markdown 编辑器 [Typora][2]，其他类似的编辑器也可以阅读，不过可能会产生一些排版问题。
 
-如要直接在 GitHub Page 上阅读，需要安装 Chrome 插件 —— [GitHub with MathJax][1]，测试后发现该插件无法正常渲染某些公式（已向插件作者提出 issues），故还是建议用 Typora 阅读。
+如要直接在 GitHub Page 上阅读，需安装 Chrome 插件 —— [GitHub with MathJax][1]，测试后发现该插件无法正常渲染某些公式（已向插件作者提出 issues），故还是建议用 Typora 阅读。
 
 
 
