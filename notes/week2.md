@@ -46,9 +46,11 @@ $\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \thet
 
 可展开为：
 
-$\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; & \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\newline \; & \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \newline \; & \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \newline & \vdots \newline \; & \theta_n := \theta_n - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_n^{(i)} &\newline \rbrace \end{align*}$
+$\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\newline \; & \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \newline \; & \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \newline & \vdots \newline \; & \theta_n := \theta_n - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_n^{(i)} &\newline \rbrace \end{aligned}$
 
 当然，同单变量梯度下降一样，计算时需要**同时更新**所有参数。
+
+同时更新参数的向量化(Vectorization)实现： $\theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))$
 
 ## 4.3 梯度下降实践1-特征值缩放(Gradient Descent in Practice I - Feature Scaling)
 
@@ -100,11 +102,84 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; & \the
 
 ![](image/20180108_113132.png)
 
-在使用多项式回归时，要记住非常有必要进行特征缩放。
+在使用多项式回归时，要记住非常有必要进行特征缩放，比如 $x_1$ 的范围为 1-1000，那么 $x_1^2$ 的范围则为 1- 1000000。
 
-## 4.6 Normal Equation
+## 4.6 正规方程(Normal Equation)
 
-## 4.7 Normal Equation Noninvertibility
+正规方程法，即令 $\frac{\partial}{\partial{\theta_{j}}}J\left( {\theta_{j}} \right)=0$ ，通过解析函数的方式直接计算得出参数向量的值  $\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ ，Octave 中为 `theta = inv(X'*X)*X'*y`。
+
+> ${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，`inv` 函数计算矩阵的逆，类似的还有 `pinv` 函数。
+
+下表列出了正规方程法与梯度下降算法的对比
+
+| 条件              | 梯度下降 | 正规方程                                     |
+| --------------- | ---- | ---------------------------------------- |
+| 是否需要选取 $\alpha$ | 需要   | 不需要                                      |
+| 是否需要迭代运算        | 需要   | 不需要                                      |
+| 特征量大[^1]时       | 适用   | 不适用，$(X^TX)^{-1}$ 复杂度 $O\left( {{n}^{3}} \right)$ |
+| 适用范围[^2]        | 各类模型 | 只适用线性模型，且矩阵需可逆                           |
+
+[^1]: 一般来说，当 $n$ 超过 10000 时，对于正规方程而言，特征量较大。
+[^2]: 梯度下降算法的普适性好，而对于特定的线性回归模型，正规方程是很好的替代品。
+
+**$\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ 的推导过程**：
+
+$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
+
+
+展开上式可得
+
+$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
+
+注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
+
+$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
+
+
+
+接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
+
+$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
+
+$\frac{dX^TA}{dX}={A}$
+
+
+
+所以有:
+
+$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)$
+
+​           $={{X}^{T}}X\theta -{{X}^{T}}y$
+
+令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有
+$$
+\theta ={{\left( {X^{T}}X \right)}^{-1}}{X^{T}}y
+$$
+
+
+## 4.7 不可逆性正规方程(Normal Equation Noninvertibility)
+
+（本部分内容为选讲）
+
+正规方程无法应用于不可逆的矩阵，发生这种问题的概率很小，通常由于
+
+- 特征之间线性相关
+
+  比如同时包含英寸的尺寸和米为单位的尺寸两个特征，它们是线性相关的
+
+  即 ${x_{1}}={x_{2}}*{{\left( 3.28 \right)}^{2}}$。
+
+- 特征数量大于训练集的数量$\left(m \leqslant n \right)$。
+
+
+如果发现 $X^TX$ 的结果不可逆，可尝试：
+- 减少多余/重复特征
+- 增加训练集数量
+- 使用正则化（后文）
+
+对于这类不可逆的矩阵，我们称之为**奇异矩阵**或**退化矩阵**。
+
+这种情况下，如果还想使用正规方程法，在Octave中，可以选用 `pinv` 函数，`pinv` 区别于 `inv`，`pinv` 函数被称为伪逆函数，在矩阵不可逆的时候，使用这个函数仍可正确地计算出 $\theta$ 的值。
 
 # 5 Octave Matlab Tutorial
 
