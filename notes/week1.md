@@ -232,10 +232,9 @@ $\theta_0 = 360, \theta_1 =0$ 时：
 
 视频中举了下山的例子，即我们在山顶上的某个位置，为了下山，就不断地看一下周围**下一步往哪走**下山比较快，然后就**迈出那一步**，一直重复，直到我们到达山下的某一处**陆地**。
 
-给出梯度下降的公式：
+梯度下降公式：
 
-​	repeat until convergence:
-​		${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( \theta_0, \theta_1  \right)$
+$\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}  \right) \newline \rbrace \end{align*}$
 
 > ${\theta }_{j}$: 第 $j$ 个特征参数
 >
@@ -293,7 +292,7 @@ $\theta_0 = 360, \theta_1 =0$ 时：
 - $ J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}} $
 
 梯度下降算法
-- ${{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( \theta_0, \theta_1 \right)$
+- $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}  \right) \newline \rbrace \end{align*}$
 
 直接将线性回归模型公式带入梯度下降公式可得出公式
 
