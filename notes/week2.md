@@ -88,7 +88,9 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; & \the
 
 ## 4.5 特征和多项式回归(Features and Polynomial Regression)
 
-线性回归只能以直线来对数据进行拟合，有时候需要使用曲线来对数据进行拟合，即多项式回归(Polynomial Regression)。
+在特征选取时，我们也可以自己归纳总结，定义一个新的特征，用来**取代或拆分**旧的一个或多个特征。比如，对于房屋面积特征来说，我们可以将其拆分为长度和宽度两个特征，反之，我们也可以合并长度和宽度这两个特征为面积这一个特征。
+
+线性回归只能以直线来对数据进行拟合，有时候需要使用**曲线**来对数据进行拟合，即**多项式回归(Polynomial Regression)**。
 
 比如一个二次方模型：$h_{\theta}\left( x \right)={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}^2}$
 
