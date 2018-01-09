@@ -1,6 +1,6 @@
 [TOC]
 
-# 9 Neural Networks：Learning
+# 9 Neural Networks: Learning
 
 ## 9.1 Cost Function
 
