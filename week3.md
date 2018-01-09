@@ -14,7 +14,7 @@
 
 ![](image/20180109_144040.png)
 
-肿瘤诊断问题是一个二元分类问题，则定义 $ y \in\lbrace 0, 1\rbrace$，其中 0 表示**负向类(negative class)**，代表恶性肿瘤("-")，1 为**正向类(positive class)**，代表良性肿瘤("+")。如图，定义最右边的样本为**偏差项**。
+肿瘤诊断问题是一个**二元分类问题(binary class problems)**，则定义 $ y \in\lbrace 0, 1\rbrace$，其中 0 表示**负向类(negative class)**，代表恶性肿瘤("-")，1 为**正向类(positive class)**，代表良性肿瘤("+")。如图，定义最右边的样本为**偏差项**。
 
 在未加入偏差项时，线性回归算法给出了品红色的拟合直线，若规定
 
@@ -22,13 +22,13 @@ $h_\theta(x) \geqslant 0.5$ ，预测为 $y = 1$，即正向类；
 
 $h_\theta(x) \lt 0.5$ ，预测为 $y = 0$，即负向类。
 
-即以 0.5 为分类**阈值**(threshold)，则我们就可以根据线性回归结果，得到相对正确的分类结果 $y$。
+即以 0.5 为**阈值**(threshold)，则我们就可以根据线性回归结果，得到相对正确的分类结果 $y$。
 
 
 
-接下来加入偏差项，线性回归算法给出了靛青色的拟合直线，如果阈值仍然为 0.5，对于明明属于负向类的情况，算法会给出正向类这个完全错误的结果。
+接下来加入偏差项，线性回归算法给出了靛青色的拟合直线，如果阈值仍然为 0.5，可以看到算法在某些情况下会给出完全错误的结果。
 
-不仅如此，线性回归算法的值域为 $R$，则当线性回归算法给出如 $h = 1000, h = -1000$ 等数值时，我们仍会给出结果 $y \in \lbrace 0, 1\rbrace$，这显得非常怪异。
+不仅如此，线性回归算法的值域为 $R$，则当线性回归函数给出诸如 $h = 10000, h = -10000$ 等很大/很小(负数)的数值时，结果 $y \in \lbrace 0, 1\rbrace$，这显得非常怪异。
 
 
 
@@ -40,9 +40,9 @@ $h_\theta(x) \lt 0.5$ ，预测为 $y = 0$，即负向类。
 $$
 h_\theta \left( x \right)=g\left(\theta^{T}X \right)
 $$
-对比线性回归函数 $h_\theta \left( x \right)=\theta^{T}X$，$g$ 表示逻辑函数(logistic function)，复合起来，则为线性回归函数。
+对比线性回归函数 $h_\theta \left( x \right)=\theta^{T}X$，$g$ 表示逻辑函数([logistic function][1])，复合起来，则为线性回归函数。
 
-一个常用的逻辑函数是 S 形函数，叫做 **sigmoid 函数**（如下图），其公式为 $g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$。 
+一个常用的逻辑函数是 S 形函数，叫做 **[sigmoid 函数][2]**（如下图），其公式为 $g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$。 
 
 ![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
@@ -54,7 +54,10 @@ $\begin{align*}& h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \ne
 
 
 
-以肿瘤诊断为例，$h_\theta \left( x \right)=0.7$ 表示有 $70\%$ 的概率为恶性肿瘤。
+以肿瘤诊断为例，$h_\theta \left( x \right)=0.7$ 表示病人有 $70\%$ 的概率得了恶性肿瘤。
+
+[1]: https://en.wikipedia.org/wiki/Logistic_function
+[2]: https://en.wikipedia.org/wiki/Sigmoid_function
 
 ## 6.3 Decision Boundary
 
