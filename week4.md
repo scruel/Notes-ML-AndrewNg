@@ -1,6 +1,6 @@
 [TOC]
 
-# 8 Neural Networks：Representation
+# 8 Neural Networks: Representation
 
 ## 8.1 Non-linear Hypotheses
 

@@ -1,6 +1,6 @@
 [TOC]
 
-# 18 Application Example：Photo OCR
+# 18 Application Example: Photo OCR
 
 ## 18.1 Problem Description and Pipeline
 
