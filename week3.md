@@ -110,6 +110,8 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 ## 6.4 代价函数(Cost Function)
 
+上节又留下了个问题，我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。
+
 
 
 ## 6.5 Simplified Cost Function and Gradient Descent
