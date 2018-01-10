@@ -42,13 +42,13 @@ h_\theta \left( x \right)=g\left(\theta^{T}X \right)
 $$
 对比线性回归函数 $h_\theta \left( x \right)=\theta^{T}X$，$g$ 表示逻辑函数([logistic function][1])，复合起来，则为线性回归函数。
 
-一个常用的逻辑函数是 S 形函数，叫做 **[sigmoid 函数][2]**（如下图），其公式为 $g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$。 
+一个常用的逻辑函数是 S 形函数，叫做 [sigmoid 函数][2]（如下图），其公式为 $g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$。 
 
 ![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
 应用 sigmoid 函数，则逻辑回归模型：$$h_{\theta}(x)=g(\theta^Tx) =\frac{1}{1+e^{-\theta^Tx}}$$
 
-$h_\theta \left( x \right)$ 的作用是，根据输入 $x$，参数 $\theta$ 计算得出”输出 $y=1$“的可能性(estimated probability)，概率学中表示为：
+逻辑回归模型中，$h_\theta \left( x \right)$ 的作用是，根据输入 $x$ 以及参数 $\theta$，计算得出”输出 $y=1$“的可能性(estimated probability)，概率学中表示为：
 
 $\begin{align*}& h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \newline & P(y = 0 | x;\theta) + P(y = 1 | x ; \theta) = 1\end{align*}$
 
@@ -59,7 +59,9 @@ $\begin{align*}& h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \ne
 [1]: https://en.wikipedia.org/wiki/Logistic_function
 [2]: https://en.wikipedia.org/wiki/Sigmoid_function
 
-## 6.3 Decision Boundary
+## 6.3 决策边界(Decision Boundary)
+
+
 
 ## 6.4 Cost Function
 
