@@ -8,7 +8,7 @@
 
 ## 10.3 Model Selection and Train/Validation/Test Sets
 
-##10.4 Diagnosing Bias vs. Variance
+## 10.4 Diagnosing Bias vs. Variance
 
 ## 10.5 Regularization and Bias/Variance
 

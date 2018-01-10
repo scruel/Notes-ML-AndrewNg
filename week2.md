@@ -50,11 +50,14 @@ $\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \th
 
 当然，同单变量梯度下降一样，计算时需要**同时更新**所有参数。
 
-同时更新参数的向量化(Vectorization)实现： $\theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))$
+$h_\theta\left(x\right)= \theta^T x$，则得到同时更新参数的向量化(Vectorization)实现：
+$$
+\theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))
+$$
 
 ## 4.3 梯度下降实践1-特征值缩放(Gradient Descent in Practice I - Feature Scaling)
 
-在应用梯度下降算法实践时，由于各特征值的范围不一，可能会导致损失函数收敛过慢。
+在应用梯度下降算法实践时，由于各特征值的范围不一，可能会影响损失函数收敛速度。
 
 以房价预测问题为例，这里选取房屋面积大小和房间数量这两个特征。
 
@@ -68,7 +71,7 @@ $\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \th
 
 除了以上图人工选择并除以一个参数的方式，**均值归一化(Mean normalization)**方法更为便捷，可采用它来对所有特征值统一缩放：
 
- $x_i=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$$
+ $x_i=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$
 
 对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1$，类似于 $1\leqslant x \leqslant 3$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 $，$-0.00001 \leqslant x \leqslant 0.00001$，就显得过大/过小了。
 
@@ -120,7 +123,7 @@ $\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \th
 
 正规方程法，即令 $\frac{\partial}{\partial{\theta_{j}}}J\left( {\theta_{j}} \right)=0$ ，通过解析函数的方式直接计算得出参数向量的值  $\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ ，Octave 中为 `theta = inv(X'*X)*X'*y`。
 
-> ${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，`inv` 函数计算矩阵的逆，类似的还有 `pinv` 函数。
+> ${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，`inv` 函数用于计算矩阵的逆，类似的还有 `pinv` 函数。
 
 下表列出了正规方程法与梯度下降算法的对比
 
@@ -134,34 +137,34 @@ $\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \th
 [^1]: 一般来说，当 $n$ 超过 10000 时，对于正规方程而言，特征量较大。
 [^2]: 梯度下降算法的普适性好，而对于特定的线性回归模型，正规方程是很好的替代品。
 
-**$\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ 的推导过程**：
+**正规方程法的推导过程**：
 
-$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
+​	$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
 
 
 展开上式可得
 
-$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
+​	$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
 
 注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
 
-$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
+​	$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
 
 
 
 接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
 
-$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
+​	$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
 
-$\frac{dX^TA}{dX}={A}$
+​	$\frac{dX^TA}{dX}={A}$
 
 
 
 所以有:
 
-$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)$
+​	$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)$
 
-​           $={{X}^{T}}X\theta -{{X}^{T}}y$
+​	           $={{X}^{T}}X\theta -{{X}^{T}}y$
 
 令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有
 $$
@@ -193,7 +196,7 @@ $$
 
 这种情况下，如果还想使用正规方程法，在Octave中，可以选用 `pinv` 函数，`pinv` 区别于 `inv`，`pinv` 函数被称为伪逆函数，在矩阵不可逆的时候，使用这个函数仍可正确地计算出 $\theta$ 的值。
 
-# 5 Octave Matlab Tutorial
+# 5 Octave/Matlab Tutorial
 
 复习时可直接倍速回顾视频，笔记整理暂留。
 
