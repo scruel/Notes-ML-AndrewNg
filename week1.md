@@ -144,9 +144,9 @@
 
 ![](image/20180105_212048.png)
 
-其中 $h$ 代表结果函数，也称为**假设(hypothesis)** 。这个函数 $h$ 根据输入(房屋的面积)，给出预测结果输出(房屋的价格)，即是一个 $X\to Y$ 的映射。
+其中 $h$ 代表结果函数，也称为**假设(hypothesis)** 。假设函数根据输入(房屋的面积)，给出预测结果输出(房屋的价格)，即是一个 $X\to Y$ 的映射。
 
-$h_\theta(x)=\theta_0+\theta_1x$，为其中一种可行的表达式。
+$h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式。
 
 > $x$: 特征/输入变量。
 
@@ -156,7 +156,7 @@ $h_\theta(x)=\theta_0+\theta_1x$，为其中一种可行的表达式。
 
 ## 2.2 损失函数(Cost Function)
 
-我们的目的在于求解预测结果 $h_\theta(x)$  最接近于实际结果 $y$ 时 $\theta$ 的取值，则问题可表达为**求解 $\sum\limits_{i=0}^{m}(h_\theta(x^{(i)})-y^{(i)})$ 的最小值**。
+我们的目的在于求解预测结果 $h$ 最接近于实际结果 $y$ 时 $\theta$ 的取值，则问题可表达为**求解 $\sum\limits_{i=0}^{m}(h_\theta(x^{(i)})-y^{(i)})$ 的最小值**。
 
 > $m$: 训练集中的样本总数
 >
@@ -174,11 +174,11 @@ $h_\theta(x)=\theta_0+\theta_1x$，为其中一种可行的表达式。
 
 $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2$$ 
 
+> $\hat{y}$: $y$ 的预测值
+>
 > 系数 $\frac{1}{2}$ 存在与否都不会影响结果，这里是为了在应用梯度下降时便于求解，平方的导数会抵消掉 $\frac{1}{2}$ 。
 
 讨论到这里，我们的问题就转化成了**求解 $J\left( \theta_0, \theta_1  \right)$ 的最小值**。
-
-
 
 ## 2.3 损失函数 - 直观理解1(Cost Function - Intuition I)
 
@@ -299,7 +299,7 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 
 ![](image/20180106_203726.png)
 
-对于 $j = 0, j = 1$ 时，给出偏导计算公式的推导过程如下：
+当 $j = 0, j = 1$ 时，**平方损失函数求导的推导过程：**
 
 $\frac{\partial}{\partial\theta_j} J(\theta_1, \theta_2)=\frac{\partial}{\partial\theta_j} \left(\frac{1}{2m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}} \right)=$
 
@@ -319,7 +319,7 @@ $\frac{\partial}{\partial\theta_1} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\
 
 上文中所提到的梯度下降，都为批量梯度下降(Batch Gradient Descent)，即每次计算都使用**所有**的数据集 $\left(\sum\limits_{i=1}^{m}\right)$ 更新。
 
-由于线性回归函数呈现**碗状**，且**只有一个**全局的最优值，所以函数**一定总会**收敛到全局最小值（学习速率不可过大）。同时，函数 $J​$ 被称为凸二次函数，而线性回归函数求解最小值问题属于**凸函数优化问题**。
+由于线性回归函数呈现**碗状**，且**只有一个**全局的最优值，所以函数**一定总会**收敛到全局最小值（学习速率不可过大）。同时，函数 $J$ 被称为**凸二次函数**，而线性回归函数求解最小值问题属于**凸函数优化问题**。
 
 ![](image/24e9420f16fdd758ccb7097788f879e7.png)
 
