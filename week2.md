@@ -12,9 +12,9 @@
 
 > $n$: 特征的总数 
 >
->  ${x}^{\left( i \right)}$: 代表特征矩阵中第 $i$ 行，也就是第 $i$ 个训练实例。
+>  ${x}^{\left( i \right)}$: 代表样本矩阵中第 $i$ 行，也就是第 $i$ 个训练实例。
 >
->  ${x}_{j}^{\left( i \right)}$: 代表特征矩阵中第 $i$ 行的第 $j$ 个特征，也就是第 $i$ 个训练实例的第 $j$ 个特征。
+>  ${x}_{j}^{\left( i \right)}$: 代表样本矩阵中第 $i$ 行的第 $j$ 列，也就是第 $i$ 个训练实例的第 $j$ 个特征。
 
 参照上图，则有 ${x}^{(2)}\text{=}\begin{bmatrix} 1416\\\ 3\\\ 2\\\ 40 \end{bmatrix}, {x}^{(2)}_{1} = 1416$
 
@@ -22,13 +22,19 @@
 
 对于 $\theta_0$，和单特征中一样，我们将其看作基础数值。例如，房价的基础价格。
 
-参数向量的维度为 $n+1$，在特征向量中添加 $x_{0}$ 后，其维度也变为 $n+1$， 则运用线性代数，可对 $h$ 简化。 
+参数向量的维度为 $n+1$，在特征向量中添加 $x_{0}$ 后，其维度也变为 $n+1$， 则运用线性代数，可简化 $h$：
 
 $h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; ... \;\theta_n \end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x$
 
 > $\theta^T$: $\theta$ 矩阵的转置
 >
+> $x$: 某个样本的特征向量，$n+1$ 维特征量向量
+>
 > $x_0$: 为了计算方便我们会假设 $x_0^{(i)} = 1$
+
+**注：该部分记号较多，记不住可随时回顾！**
+
+
 
 ## 4.2 多变量梯度下降(Gradient Descent for Multiple Variables)
 
@@ -38,11 +44,11 @@ $h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; ... \;\theta_n \end
 
 前文提到梯度下降对于最小化损失函数的通用性，则多变量梯度下降公式即
 
-$\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}}  \right) \newline \rbrace \end{align*}​$
+$\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}}  \right) \newline \rbrace \end{align*}$
 
-对其求导：
+解出偏导得：
 
-$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\newline \rbrace\end{align*}$
+$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\newline \rbrace\end{align*}​$
 
 可展开为：
 
@@ -54,6 +60,8 @@ $h_\theta\left(x\right)= \theta^T x$，则得到同时更新参数的向量化(V
 $$
 \theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))
 $$
+
+> $X$: 训练集数据，$m\times(n+1)$ 维矩阵（包含额外特征 $x_0=1$）
 
 ## 4.3 梯度下降实践1-特征值缩放(Gradient Descent in Practice I - Feature Scaling)
 
@@ -150,15 +158,11 @@ $$
 
 ​	$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
 
-
-
 接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
 
 ​	$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
 
 ​	$\frac{dX^TA}{dX}={A}$
-
-
 
 所以有:
 
