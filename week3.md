@@ -197,13 +197,101 @@ $={\left({h_\theta}\left( {{x}^{(i)}} \right)-{{y}^{(i)}}\right)x_j^{(i)}}$
 
 $\frac{\partial }{\partial {\theta_{j}}}J(\theta) = -\frac{1}{m}\sum\limits_{i=1}^{m}{\frac{\partial }{\partial {\theta_{j}}}f(\theta)}=\frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} $
 
-
-
 ## 6.6 进阶优化(Advanced Optimization)
 
+运行梯度下降算法，其能最小化损失函数 $J(\theta)$ 并得出 $\theta$ 的最优值，在使用梯度下降算法时，如果不需要观察损失函数的收敛情况，则直接计算 $J(\theta)$ 的导数项即可，而不需要计算 $J(\theta)$ 值。
 
+我们编写代码给出损失函数及其偏导数然后传入梯度下降算法中，接下来算法则会为我们最小化损失函数给出参数的最优解。这类算法被称为**最优化算法(Optimization Algorithms)**，梯度下降算法不是唯一的最小化算法[^1]。
+
+一些最优化算法：
+- 梯度下降法(Gradient Descent)
+- 共轭梯度算法(Conjugate gradient)
+- 牛顿法和拟牛顿法(Newton's method & Quasi-Newton Methods)
+  - DFP算法
+  - 局部优化法(BFGS)
+  - 有限内存局部优化法(L-BFGS)
+- 拉格朗日乘数法(Lagrange multiplier)
+
+比较梯度下降算法：一些最优化算法虽然会更为复杂，难以调试，自行实现又困难重重，开源库又效率也不一，哎，做个调包侠还得碰运气。不过这些算法通常效率更高，并无需选择学习速率 $\alpha$（少一个参数少一份痛苦啊！）。
+
+Octave/Matlab 中对这类高级算法做了封装，易于调用。
+
+
+
+假设有 $J(\theta) = (\theta_1-5)^2 + (\theta_2-5)^2$，要求参数 $\theta=\begin{bmatrix} \theta_1\\\theta_2\end{bmatrix}$的最优值。
+
+下面为 Octave/Matlab 求解最优化问题的代码实例：
+
+1. 创建一个函数以返回损失函数及其偏导数：
+
+```matlab
+function [jVal, gradient] = costFunction(theta)
+  % code to compute J(theta)
+  jVal=(theta(1)-5)^2+(theta(2)-5)^2;
+
+  % code to compute derivative of J(theta)
+  gradient=zeros(2,1);
+  
+  gradient(1)=2*(theta(1)-5);
+  gradient(2)=2*(theta(2)-5);
+end
+```
+
+2. 将 `costFunction` 函数及所需参数传入最优化函数 `fminunc`，以求解最优化问题：
+
+```matlab
+options = optimset('GradObj', 'on', 'MaxIter', 100);
+initialTheta = zeros(2,1);
+   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
+```
+
+> `'GradObj', 'on'`: 启用梯度目标参数（则需要将梯度传入算法）
+>
+> `'MaxIter', 100`: 最大迭代次数为 100 次
+>
+> `@xxx`: Octave/Matlab 中的函数指针
+>
+> `optTheta`: 最优化得到的参数向量
+>
+> `functionVal`: 引用函数最后一次的返回值
+>
+> `exitFlag`: 标记损失函数是否收敛
+
+注：Octave/Matlab 中可以使用 `help fminunc` 命令随时查看函数的帮助文档。
+
+3. 返回结果
+
+```
+optTheta =
+
+     5
+     5
+
+functionVal = 0
+
+exitFlag = 1
+```
+
+
+[^1]: https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms
 
 ## 6.7 多类别分类: 一对多(Multiclass Classification: One-vs-all)
+
+一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。(⊙﹏⊙)有点累，让我歇歇，丢张图去休息啦。。。
+
+![](image/20180112_001720.png)
+
+原理是，转化多类别分类问题为**多个二元分类问题**，这种方法被称为 One-vs-all。
+
+正式定义：$h_\theta^{\left( i \right)}\left( x \right)=p\left( y=i|x;\theta  \right), i=\left( 1,2,3....k \right)$
+
+> $h_\theta^{\left( i \right)}\left( x \right)$: 输出 $y=i$（属于第 $i$ 个分类）的可能性
+>
+> $k$: 类别总数，如上图 $k=3$。
+
+注意多类别分类问题中 $h_\theta(x)$ 的结果不再只是一个实数而是一个向量，如果类别总数为 $k$，现在 $h_\theta(x)$ 就是一个 $k$ 维向量。
+
+对于样本实例来说，只要看分为哪个类别时预测输出的值最大，就说它输出属于哪个类别，即 $y = \mathop{\max}\limits_i\,h_\theta^{\left( i \right)}\left( x \right)$。
 
 # 7 Regularization
 ## 7.1 The Problem of Overfitting
