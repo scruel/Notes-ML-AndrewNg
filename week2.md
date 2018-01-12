@@ -214,6 +214,8 @@ $$
 
 ## 5.5 Control Statements_ for, while, if statement
 
-## 5.6 Vectorization
+## 5.6 向量化(Vectorization)
+
+$\sum\limits_{j=0}^n\theta_jx_j=\theta^Tx$
 
 ## 5.x 常用函数整理
