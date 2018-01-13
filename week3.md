@@ -277,7 +277,7 @@ exitFlag = 1
 
 ## 6.7 多类别分类: 一对多(Multiclass Classification: One-vs-all)
 
-一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。(⊙﹏⊙)有点累，让我歇歇，丢张图去休息啦。。。
+一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。
 
 ![](image/20180112_001720.png)
 
@@ -343,13 +343,44 @@ exitFlag = 1
   - 减少特征的方式易丢失有用的特征信息
 - 正则化(Regularization)
   - 可保留所有参数（许多有用的特征都能轻微影响结果）
-  - 减少/惩罚各参数大小(magnitude)，以减轻各参数对模型的影响参数
+  - 减少/惩罚各参数大小(magnitude)，以减轻各参数对模型的影响程度
   - 当有很多参数对于模型只有轻微影响时，正则化方法的表现很好
 
 ## 7.2 代价函数(Cost Function)
 
+很多时候由于特征数量过多，过拟合时我们很难选出要保留的特征，这时候正则化则能解决过拟合的问题。
+
+上文中，$\theta_0 + \theta_1x + \theta_2x^2 + \theta_3x^3 + \theta_4x^4$ 这样一个复杂的多项式较易过拟合，在不减少特征的情况下，**如果能消除类似于 $\theta_3x^3$、$\theta_4x^4$ 等复杂部分，那复杂函数就变得简单了**。
+
+为了保留各个参数的信息，不修改假设函数，改而修改代价函数：
+
+$min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$
+
+上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项 $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要**极大地减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
 
 
-## 7.3 Regularized Linear Regression
 
-## 7.4 Regularized Logistic Regression
+根据上面的讨论，有时也无法决定要减少哪个参数，故统一进行参数惩罚。
+
+代价函数：
+
+$J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{{{({h_\theta}({{x}^{(i)}})-{{y}^{(i)}})}^{2}}+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}]}$
+
+> $\lambda$: 正则化参数(Regularization Parameter)
+>
+> $\sum\limits_{j=1}^{n}$: 不惩罚基础参数 $\theta_0$
+>
+> $\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}$: 正则化项
+
+$\lambda$ 正则化参数类似于学习速率，也需要我们自行对其选择一个合适的值，虽然看似更为麻烦了一些，不过实际上通常都会使用正则化方法来避免过拟合。
+
+- 过大
+  - 导致模型欠拟合
+  - 无法正常去过拟问题
+  - 梯度下降可能无法收敛
+- 过小
+  - 无法避免过拟合（等于没有）
+
+## 7.3 线性回归正则化(Regularized Linear Regression)
+
+## 7.4 逻辑回归正则化(Regularized Logistic Regression)
