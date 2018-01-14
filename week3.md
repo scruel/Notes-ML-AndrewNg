@@ -28,7 +28,7 @@ $h_\theta(x) \lt 0.5$ ，预测为 $y = 0$，即负向类。
 
 接下来加入偏差项，线性回归算法给出了靛青色的拟合直线，如果阈值仍然为 0.5，可以看到算法在某些情况下会给出完全错误的结果，对于癌症、肿瘤诊断这类要求预测极其精确的问题，这种情况是无法容忍的。
 
-不仅如此，线性回归算法的值域为 $R$，则当线性回归函数给出诸如 $h_\theta(x) = 10000, h_\theta(x) = -10000$ 等很大/很小(负数)的数值时，结果 $y \in \lbrace 0, 1\rbrace$，这显得非常怪异。
+不仅如此，线性回归算法的值域为全体实数集（$h_\theta(x) \in R$），则当线性回归函数给出诸如 $h_\theta(x) = 10000, h_\theta(x) = -10000$ 等很大/很小(负数)的数值时，结果 $y \in \lbrace 0, 1\rbrace$，这显得非常怪异。
 
 
 
@@ -110,7 +110,7 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 ## 6.4 损失函数(Cost Function)
 
-上节又留下了个问题，我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。
+那我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。
 
 如果直接套用线性回归的损失函数： $J\left( {\theta} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2}}}$
 
@@ -118,17 +118,19 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 ![](image/20180111_080314.png)
 
-回忆线性回归中的损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样梯度下降算法将无法确定收敛点是全局最优。
+回忆线性回归中的损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。
 
 ![](image/20180111_080514.png)
 
-如果是一个凸函数，可以对其进行最优化分析，这类最优化问题，称为**凸优化问题**。还好，损失函数不止平方损失函数一种。
+如果损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为**凸优化问题(Convex optimization)**。
 
-对于逻辑回归，更换平方损失函数为**对数损失函数**，可由统计学中的最大似然估计方法推出损失函数 $J(\theta)$:
+当然，损失函数不止平方损失函数一种。
+
+对于逻辑回归，更换平方损失函数为**对数损失函数**，可由统计学中的最大似然估计方法可推出损失函数 $J(\theta)$：
 
 $\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^{(i)}),y^{(i)}) \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(h_\theta(x)) \; & \text{if y = 1} \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(1-h_\theta(x)) \; & \text{if y = 0}\end{align*}$
 
-则可绘制关于 $J(\theta)$ 的图像如下：
+则有关于 $J(\theta)$ 的图像如下：
 
 ![](image/20180111_080614.png)
 
@@ -138,7 +140,7 @@ $\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^
 
 ## 6.5 简化的成本函数和梯度下降(Simplified Cost Function and Gradient Descent)
 
-由于懒得分类讨论，对于二元分类问题，我们把损失函数**简化**为一个函数： 
+由于懒得分类讨论，对于二元分类问题，我们可把损失函数**简化**为一个函数： 
 $Cost\left( {h_\theta}\left( x \right),y \right)=-y\times log\left( {h_\theta}\left( x \right) \right)-(1-y)\times log\left( 1-{h_\theta}\left( x \right) \right)$
 
 当 $y = 0$，左边式子整体为 $0$，当 $y = 1$，则 $1-y=0$，右边式子整体为0，也就和上面的分段函数一样了，而一个式子计算起来更方便。
@@ -272,9 +274,6 @@ functionVal = 0
 exitFlag = 1
 ```
 
-
-[^1]: https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms
-
 ## 6.7 多类别分类: 一对多(Multiclass Classification: One-vs-all)
 
 一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。
@@ -346,41 +345,101 @@ exitFlag = 1
   - 减少/惩罚各参数大小(magnitude)，以减轻各参数对模型的影响程度
   - 当有很多参数对于模型只有轻微影响时，正则化方法的表现很好
 
-## 7.2 代价函数(Cost Function)
+## 7.2 损失函数(Cost Function)
 
-很多时候由于特征数量过多，过拟合时我们很难选出要保留的特征，这时候正则化则能解决过拟合的问题。
+很多时候由于特征数量过多，过拟合时我们很难选出要保留的特征，这时候应用正则化方法则是很好的选择。
 
 上文中，$\theta_0 + \theta_1x + \theta_2x^2 + \theta_3x^3 + \theta_4x^4$ 这样一个复杂的多项式较易过拟合，在不减少特征的情况下，**如果能消除类似于 $\theta_3x^3$、$\theta_4x^4$ 等复杂部分，那复杂函数就变得简单了**。
 
-为了保留各个参数的信息，不修改假设函数，改而修改代价函数：
+为了保留各个参数的信息，不修改假设函数，改而修改损失函数：
 
 $min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$
 
-上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项 $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要**极大地减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
+上式中，我们在损失函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项(penalty term) $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化损失函数，那么势必需要极大地**减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
+
+![](image/20180114_090054.png)
 
 
 
-根据上面的讨论，有时也无法决定要减少哪个参数，故统一进行参数惩罚。
+根据上面的讨论，有时也无法决定要减少哪个参数，故统一惩罚除了 $\theta_0$ 外的所有参数。
 
-代价函数：
+损失函数：
 
 $J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{{{({h_\theta}({{x}^{(i)}})-{{y}^{(i)}})}^{2}}+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}]}$
 
-> $\lambda$: 正则化参数(Regularization Parameter)
+> $\lambda$: 正则化参数(Regularization Parameter)，$\lambda > 0$
 >
 > $\sum\limits_{j=1}^{n}$: 不惩罚基础参数 $\theta_0$
 >
 > $\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}$: 正则化项
 
-$\lambda$ 正则化参数类似于学习速率，也需要我们自行对其选择一个合适的值，虽然看似更为麻烦了一些，不过实际上通常都会使用正则化方法来避免过拟合。
+$\lambda$ 正则化参数类似于学习速率，也需要我们自行对其选择一个合适的值。
 
 - 过大
-  - 导致模型欠拟合
+  - 导致模型欠拟合(假设可能会变成近乎 $x = \theta_0$ 的直线 )
   - 无法正常去过拟问题
   - 梯度下降可能无法收敛
 - 过小
   - 无法避免过拟合（等于没有）
 
+
+> 正则化符合奥卡姆剃刀(Occam's razor)原理。在所有可能选择的模型中，能够很好地解释已知数据并且十分简单才是最好的模型，也就是应该选择的模型。从贝叶斯估计的角度来看，正则化项对应于模型的先验概率。可以假设复杂的模型有较大的先验概率，简单的模型有较小的先验概率。
+
+> 正则化是结构风险最小化策略的实现，是去过拟合问题的典型方法，虽然看起来多了个一参数多了一重麻烦，后文会介绍自动选取正则化参数的方法。模型越复杂，正则化参数值就越大。比如，正则化项可以是模型参数向量的范数。
+
 ## 7.3 线性回归正则化(Regularized Linear Regression)
 
+应用正则化的线性回归梯度下降算法：
+
+$\begin{align*} & \text{Repeat}\ \lbrace \newline & \ \ \ \ \theta_0 := \theta_0 - \alpha\ \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)} \newline & \ \ \ \ \theta_j := \theta_j - \alpha\ \left[ \left( \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right], \ \ \ j \in \lbrace 1,2...n\rbrace\newline & \rbrace \end{align*}$
+
+也可以移项得到更新表达式的另一种表示形式
+
+$\theta_j := \theta_j(1 - \alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}$
+
+> $\frac{\lambda}{m}\theta_j$: 正则化项
+
+
+
+应用正则化的正规方程法[^2]：
+
+$\begin{align*}& \theta = \left( X^TX + \lambda \cdot L \right)^{-1} X^Ty \newline& \text{where}\ \ L = \begin{bmatrix} 0 & & & & \newline & 1 & & & \newline & & 1 & & \newline & & & \ddots & \newline & & & & 1 \newline\end{bmatrix}\end{align*}$
+
+> $\lambda\cdot L$: 正则化项
+>
+> $L$: 第一行第一列为 $0$ 的 $n+1$ 维单位矩阵
+
+Matlab/Octave 代码：
+```
+>> L = eye(5)
+>> L(1,1) = 0
+
+L =
+
+     0     0     0     0     0
+     0     1     0     0     0
+     0     0     1     0     0
+     0     0     0     1     0
+     0     0     0     0     1
+```
+
+
+
+前文提到正则化可以解决正规方程法中不可逆的问题，即增加了 $\lambda \cdot L$ 正则化项后，可以保证 $X^TX + \lambda \cdot L$ 可逆(invertible)，即便 $X^TX$ 不可逆(non-invertible)。 
+
 ## 7.4 逻辑回归正则化(Regularized Logistic Regression)
+
+为逻辑回归的损失函数添加正则化项：
+
+$J(\theta) = - \frac{1}{m} \sum_{i=1}^m \large[ y^{(i)}\ \log (h_\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h_\theta(x^{(i)}))\large] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2$
+
+前文已经证明过逻辑回归和线性回归的损失函数的求导结果是一样的，此处通过给正则化项添加常数 $\frac{1}{2}$，则其求导结果也就一样了。
+
+从而有应用正则化的逻辑回归梯度下降算法：
+
+$\begin{align*} & \text{Repeat}\ \lbrace \newline & \ \ \ \ \theta_0 := \theta_0 - \alpha\ \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_0^{(i)} \newline & \ \ \ \ \theta_j := \theta_j - \alpha\ \left[ \left( \frac{1}{m}\ \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right], \ \ \ j \in \lbrace 1,2...n\rbrace\newline & \rbrace \end{align*}$
+
+
+
+[^1]: https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms
+[^2]: week2 - 4.6
