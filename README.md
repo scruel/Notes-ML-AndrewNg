@@ -15,6 +15,8 @@ https://www.coursera.org/learn/machine-learning
 2. 所有课后作业(assignments)都已提交并通过 Coursera 编程测验。仅供参考，请勿抄袭。
 
 
+[我(kechi)的知乎笔记文案](https://zhuanlan.zhihu.com/p/32781741)
+
 For Andrew Ng's machine learning course on Coursera.
 
 Including assignments and notes, notes are WIP.
@@ -25,18 +27,23 @@ You can read it by Typora or any other similar markdown editor.
 ## Read
 
 1. **在线阅读地址**：http://scruel.gitee.io/ml-andrewng-notes/
+
 2. 直接在 GitHub Page 上阅读，需安装 Chrome 插件 —— [GitHub with MathJax][1]（部分公式仍无法正常解析）。
+
 3. 下载 .html 网页文件及 笔记图片 image 文件夹，浏览器打开阅读。
+
 4. 笔记源码(.md)基于支持 LaTeX 的 markdown 编辑器 [Typora][2]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
+
+
 
 
 ## Resources
 
 方便网络不方便的同学学习
 
-[百度网盘下载](https://pan.baidu.com/s/1mkmnRIC) | 密码：fdzc（包含视频，讲义，以及编程作业题目压缩包）
+[百度网盘下载](https://pan.baidu.com/s/1mkmnRIC) | 密码：fdzc（包含视频，讲义，以及编程作业题原题压缩包）
 
-[B站在线1](https://www.bilibili.com/video/av17624209/?from=search&seid=15848135050308500663) | [B站在线2](https://www.bilibili.com/video/av17624412/?from=search&seid=15848135050308500663)
+[B站在线中英双语](http://www.bilibili.com/video/av9912938?bbid=F8173D95-FF96-47EF-B7F4-0779D698B8051978infoc) | [B站在线英文版1](https://www.bilibili.com/video/av17624209/?from=search&seid=15848135050308500663) | [B站在线英文版2](https://www.bilibili.com/video/av17624412/?from=search&seid=15848135050308500663)
 
 当然，还是建议克服一下困难，最好能上 Coursera 网站学习，官网安排的贴心小测试可以检验你对知识的掌握情况。
 
