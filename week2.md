@@ -129,9 +129,11 @@ $$
 
 对于一些线性回归问题来说，正规方程法给出了一个更好的解决问题的方式。
 
-正规方程法，即令 $\frac{\partial}{\partial{\theta_{j}}}J\left( {\theta_{j}} \right)=0$ ，通过解析函数的方式直接计算得出参数向量的值  $\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ ，Octave 中代码为 `theta = inv(X'*X)*X'*y`。
+正规方程法，即令 $\frac{\partial}{\partial{\theta_{j}}}J\left( {\theta_{j}} \right)=0$ ，通过解析函数的方式直接计算得出参数向量的值  $\theta ={{\left( {X^T}X \right)}^{-1}}{X^{T}}y$ ，Octave/Matlab 代码： `theta = inv(X'*X)*X'*y`。
 
 > ${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，`inv` 函数用于计算矩阵的逆，类似的还有 `pinv` 函数。
+>
+> `X'`: 表示矩阵 X 的转置
 
 下表列出了正规方程法与梯度下降算法的对比
 
@@ -212,7 +214,7 @@ $$
 
 ## 5.4 Plotting Data
 
-## 5.5 Control Statements_ for, while, if statement
+## 5.5 Control Statements: for, while, if statement
 
 ## 5.6 向量化(Vectorization)
 
