@@ -72,7 +72,7 @@ $\begin{align*}& h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \ne
 
 $\begin{align*}& h_\theta(x) \geq 0.5 \rightarrow y = 1 \newline& h_\theta(x) < 0.5 \rightarrow y = 0 \newline\end{align*}$
 
-回忆一下逻辑函数的图像：
+回忆一下 sigmoid 函数的图像：
 
 ![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
