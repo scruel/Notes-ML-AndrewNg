@@ -133,7 +133,7 @@ $$
 
 > ${X}^{-1}$: 矩阵 $X$ 的逆，在 Octave 中，`inv` 函数用于计算矩阵的逆，类似的还有 `pinv` 函数。
 >
-> `X'`: 表示矩阵 X 的转置
+> `X'`: 在 Octave 中表示矩阵 X 的转置，即 $X^T$
 
 下表列出了正规方程法与梯度下降算法的对比
 
@@ -149,30 +149,28 @@ $$
 
 **正规方程法的推导过程**：
 
-​	$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
+$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
 
 
 展开上式可得
 
-​	$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
+$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
 
 注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
 
-​	$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
+$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
 
 接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
 
-​	$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
+$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
 
-​	$\frac{dX^TA}{dX}={A}$
+$\frac{dX^TA}{dX}={A}$
 
 所以有:
 
-​	$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)$
+$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)={{X}^{T}}X\theta -{{X}^{T}}y$
 
-​	           $={{X}^{T}}X\theta -{{X}^{T}}y$
-
-令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有
+令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0​$, 则有
 $$
 \theta ={{\left( {X^{T}}X \right)}^{-1}}{X^{T}}y
 $$

@@ -15,8 +15,6 @@ https://www.coursera.org/learn/machine-learning
 2. 所有课后作业(assignments)都已提交并通过 Coursera 编程测验。仅供参考，请勿抄袭。
 
 
-[我(kechi)的知乎笔记文案](https://zhuanlan.zhihu.com/p/32781741)
-
 For Andrew Ng's machine learning course on Coursera.
 
 Including assignments and notes, notes are WIP.
@@ -57,6 +55,10 @@ You can read it by Typora or any other similar markdown editor.
 注：由于手写笔记成稿时间较早，有所参考无法一一致谢，在此统一表示谢意！
 
 ## License
+
+[本(ke)人(chi)的知乎笔记文案](https://zhuanlan.zhihu.com/p/32781741)
+
+
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)][3]
 
