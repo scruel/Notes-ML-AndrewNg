@@ -55,14 +55,17 @@ You can read it by Typora or any other similar markdown editor.
 注：由于手写笔记成稿时间较早，有所参考无法一一致谢，在此统一表示谢意！
 
 ## License
-
-[本(ke)人(chi)的知乎笔记文案](https://zhuanlan.zhihu.com/p/32781741)
-
-
-
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)][3]
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License][3].
+
+
+
+[知乎文章](https://zhuanlan.zhihu.com/p/32781741)
+
+
+
+By: Scruel
 
 [1]: https://chrome.google.com/webstore/detail/ioemnmodlmafdkllaclgeombjnmnbima
 [2]: https://typora.io/
