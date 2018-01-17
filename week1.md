@@ -154,7 +154,23 @@ $h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式
 
 单变量，即只有一个特征(如例子中房屋的面积这个特征)。
 
-## 2.2 损失函数(Cost Function)
+## 2.2 代价函数(Cost Function)
+
+> 李航《统计学习方法》一书中，损失函数与代价函数两者为**同一概念**，未作细分区别，全书没有和《深度学习》一书一样混用，而是统一使用**损失函数**来指代这类类似概念。
+>
+> 吴恩达(Andrew Ng)老师在其公开课中对两者做了细分。**如果要听他的课做作业，不细分这两个概念是会被打小手扣分的**！这也可能是因为老师发现了业内混用的乱象，想要治一治吧。
+>
+> **损失函数**(Loss/Error Function): 计算**单个**训练集的误差
+>
+> **代价函数**(Cost Function): 计算整个训练集**所有损失函数之和的平均值**
+>
+> 
+>
+> 综合考虑，本笔记对两者概念进行细分，若有所谬误，欢迎指正。
+>
+> [机器学习中的目标函数、损失函数、代价函数有什么区别？- 知乎](https://www.zhihu.com/question/52398145/answer/298003145)
+
+
 
 我们的目的在于求解预测结果 $h$ 最接近于实际结果 $y$ 时 $\theta$ 的取值，则问题可表达为**求解 $\sum\limits_{i=0}^{m}(h_\theta(x^{(i)})-y^{(i)})$ 的最小值**。
 
@@ -170,7 +186,7 @@ $h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式
 
 上图展示了当 $\theta$ 取不同值时，$h_\theta\left(x\right)$ 对数据集的拟合情况，蓝色虚线部分代表**建模误差**（预测结果与实际结果之间的误差），我们的目标就是最小化所有误差之和。
 
-为了求解最小值，引入损失函数(Cost Function)概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：
+为了求解最小值，引入代价函数(Cost Function)概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：
 
 $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2$$ 
 
@@ -180,22 +196,22 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 
 讨论到这里，我们的问题就转化成了**求解 $J\left( \theta_0, \theta_1  \right)$ 的最小值**。
 
-## 2.3 损失函数 - 直观理解1(Cost Function - Intuition I)
+## 2.3 代价函数 - 直观理解1(Cost Function - Intuition I)
 
 根据上节视频，列出如下定义：
 
 - 假设函数(Hypothesis): $h_\theta(x)=\theta_0+\theta_1x$
 - 参数(Parameters): $\theta_0, \theta_1$
-- 损失函数(Cost Function): $ J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}} $
+- 代价函数(Cost Function): $ J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}} $
 - 目标(Goal): $\underset{\theta_0, \theta_1}{\text{minimize}} J \left(\theta_0, \theta_1 \right)$
 
-为了直观理解损失函数到底是在做什么，先假设 $\theta_1 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。
+为了直观理解代价函数到底是在做什么，先假设 $\theta_1 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。
 
 ![](image/20180106_085915.png)
 
 右图 $J\left(\theta_0, \theta_1\right)$ 随着 $\theta_1$ 的变化而变化，可见**当 $\theta_1 = 1$ 时，$J\left(\theta_0, \theta_1 \right) = 0$，取得最小值，**对应于左图青色直线，即函数 $h$ 拟合程度最好的情况。
 
-## 2.4 损失函数 - 直观理解2(Cost Function - Intuition II)
+## 2.4 代价函数 - 直观理解2(Cost Function - Intuition II)
 
 > 注：该部分由于涉及到了多变量成像，可能较难理解，要求只需要理解上节内容即可，该节如果不能较好理解可跳过。
 
@@ -203,7 +219,7 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 
 ![](image/20180106_091307.png)
 
-参数在 $\theta_0$ 不恒为 $0$ 时损失函数 $J\left(\theta\right)$ 关于 $\theta_0, \theta_1$ 的3-D图像，图像中的高度为损失函数的值。
+参数在 $\theta_0$ 不恒为 $0$ 时代价函数 $J\left(\theta\right)$ 关于 $\theta_0, \theta_1$ 的3-D图像，图像中的高度为代价函数的值。
 
 ![](image/20180106_090904.png)
 
@@ -217,13 +233,13 @@ $\theta_0 = 360, \theta_1 =0$ 时：
 
 ![](image/20180106_092119.png)
 
-上图中最中心的点（红点），近乎为图像中的最低点，也即损失函数的最小值，此时对应 $h_\theta\left(x\right)$ 对数据的拟合情况如左图所示，嗯，一看就拟合的很不错，预测应该比较精准啦。
+上图中最中心的点（红点），近乎为图像中的最低点，也即代价函数的最小值，此时对应 $h_\theta\left(x\right)$ 对数据的拟合情况如左图所示，嗯，一看就拟合的很不错，预测应该比较精准啦。
 
 ## 2.5 梯度下降(Gradient Descent)
 
-在特征量很大的情况下，即便是借用计算机来生成图像，人工的方法也很难读出 $J\left(\theta\right)$ 的最小值，并且大多数情况无法进行可视化，故引入**梯度下降(Gradient Descent)方法，让计算机自动找出最小化损失函数时对应的 $\theta$ 值。**
+在特征量很大的情况下，即便是借用计算机来生成图像，人工的方法也很难读出 $J\left(\theta\right)$ 的最小值，并且大多数情况无法进行可视化，故引入**梯度下降(Gradient Descent)方法，让计算机自动找出最小化代价函数时对应的 $\theta$ 值。**
 
-梯度下降背后的思想是：开始时，我们随机选择一个参数组合$\left( {\theta_{0}},{\theta_{1}},......,{\theta_{n}} \right)$即起始点，计算损失函数，然后寻找下一个能使得损失函数下降最多的参数组合。不断迭代，直到找到一个**局部最小值(local minimum)**，由于下降的情况只考虑当前参数组合周围的情况，所以无法确定当前的局部最小值是否就是**全局最小值(global minimum)**，不同的初始参数组合，可能会产生不同的局部最小值。
+梯度下降背后的思想是：开始时，我们随机选择一个参数组合$\left( {\theta_{0}},{\theta_{1}},......,{\theta_{n}} \right)$即起始点，计算代价函数，然后寻找下一个能使得代价函数下降最多的参数组合。不断迭代，直到找到一个**局部最小值(local minimum)**，由于下降的情况只考虑当前参数组合周围的情况，所以无法确定当前的局部最小值是否就是**全局最小值(global minimum)**，不同的初始参数组合，可能会产生不同的局部最小值。
 
 下图根据不同的起始点，产生了两个不同的局部最小值。
 
@@ -277,13 +293,13 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 
   可能越过最低点，甚至导致无法收敛。
 
-**学习速率只需选定即可**，不需要在运行梯度下降算法的时候进行动态改变，随着斜率越来越接近于0，损失函数的变化幅度会越来越小，直到收敛到局部极小值。
+**学习速率只需选定即可**，不需要在运行梯度下降算法的时候进行动态改变，随着斜率越来越接近于0，代价函数的变化幅度会越来越小，直到收敛到局部极小值。
 
-如图，品红色点为初始点，损失函数随着迭代的进行，变化的幅度越来越小。
+如图，品红色点为初始点，代价函数随着迭代的进行，变化的幅度越来越小。
 
 ![](image/20180106_191956.png)
 
-**最后，梯度下降不止可以用于线性回归中的损失函数，还通用于最小化其他的损失函数。**
+**最后，梯度下降不止可以用于线性回归中的代价函数，还通用于最小化其他的代价函数。**
 
 ## 2.7 线性回归中的梯度下降(Gradient Descent For Linear Regression)
 
@@ -299,7 +315,7 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 
 ![](image/20180106_203726.png)
 
-当 $j = 0, j = 1$ 时，**平方损失函数求导的推导过程：**
+当 $j = 0, j = 1$ 时，**线性回归中代价函数求导的推导过程：**
 
 $\frac{\partial}{\partial\theta_j} J(\theta_1, \theta_2)=\frac{\partial}{\partial\theta_j} \left(\frac{1}{2m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}} \right)=$
 
