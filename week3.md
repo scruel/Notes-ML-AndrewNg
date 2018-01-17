@@ -108,25 +108,25 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 简单来说，决策边界就是**分类的分界线**，分类现在实际就由 $z$ (中的 $\theta$)决定啦。
 
-## 6.4 损失函数(Cost Function)
+## 6.4 代价函数(Cost Function)
 
 那我们怎么知道决策边界是啥样？$\theta$ 多少时能很好的拟合数据？当然，见招拆招，总要来个 $J(\theta)$。
 
-如果直接套用线性回归的损失函数： $J\left( {\theta} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2}}}$
+如果直接套用线性回归的代价函数： $J\left( {\theta} \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( h_{\theta} \left({x}^{\left( i \right)} \right)-{y}^{\left( i \right)} \right)}^{2}}}$
 
 其中 $h_\theta(x) = g\left(\theta^{T}x \right)$，可绘制关于 $J(\theta)$ 的图像，如下图
 
 ![](image/20180111_080314.png)
 
-回忆线性回归中的损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。
+回忆线性回归中的平方损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。
 
 ![](image/20180111_080514.png)
 
-如果损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为**凸优化问题(Convex optimization)**。
+如果此处的损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为**凸优化问题(Convex optimization)**。
 
 当然，损失函数不止平方损失函数一种。
 
-对于逻辑回归，更换平方损失函数为**对数损失函数**，可由统计学中的最大似然估计方法可推出损失函数 $J(\theta)$：
+对于逻辑回归，更换平方损失函数为**对数损失函数**，可由统计学中的最大似然估计方法推出代价函数 $J(\theta)$：
 
 $\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^{(i)}),y^{(i)}) \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(h_\theta(x)) \; & \text{if y = 1} \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(1-h_\theta(x)) \; & \text{if y = 0}\end{align*}$
 
@@ -134,13 +134,13 @@ $\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^
 
 ![](image/20180111_080614.png)
 
-如左图，当训练集的结果为 $y=1$（正样本）时，随着假设函数趋向于 $1$，损失函数的值会趋于 $0$，即意味着拟合程度很好。如果假设函数此时趋于 $0$，则会给出一个**很高的损失**，拟合程度**差**，算法会根据其迅速纠正 $\theta$ 值，右图 $y=0$ 同理。
+如左图，当训练集的结果为 $y=1$（正样本）时，随着假设函数趋向于 $1$，代价函数的值会趋于 $0$，即意味着拟合程度很好。如果假设函数此时趋于 $0$，则会给出一个**很高的代价**，拟合程度**差**，算法会根据其迅速纠正 $\theta$ 值，右图 $y=0$ 同理。
 
 区别于平方损失函数，对数损失函数也是一个凸函数，但没有局部最优值。
 
 ## 6.5 简化的成本函数和梯度下降(Simplified Cost Function and Gradient Descent)
 
-由于懒得分类讨论，对于二元分类问题，我们可把损失函数**简化**为一个函数： 
+由于懒得分类讨论，对于二元分类问题，我们可把代价函数**简化**为一个函数： 
 $Cost\left( {h_\theta}\left( x \right),y \right)=-y\times log\left( {h_\theta}\left( x \right) \right)-(1-y)\times log\left( 1-{h_\theta}\left( x \right) \right)$
 
 当 $y = 0$，左边式子整体为 $0$，当 $y = 1$，则 $1-y=0$，右边式子整体为0，也就和上面的分段函数一样了，而一个式子计算起来更方便。
@@ -167,7 +167,7 @@ $\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \thet
 
 
 
-**对数损失函数求导的推导过程：**
+**逻辑回归中代价函数求导的推导过程：**
 
 $J(\theta) = - \frac{1}{m} \displaystyle \sum_{i=1}^m [y^{(i)}\log (h_\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]$
 
@@ -195,15 +195,15 @@ $={({{y}^{(i)}}-\frac{1}{1+{{e}^{-{\theta^T}{{x}^{(i)}}}}})x_j^{(i)}}$
 $={\left({{y}^{(i)}}-{h_\theta}\left( {{x}^{(i)}} \right)\right)x_j^{(i)}}$
 $={\left({h_\theta}\left( {{x}^{(i)}} \right)-{{y}^{(i)}}\right)x_j^{(i)}}$
 
-则可得对数损失函数的导数：
+则可得代价函数的导数：
 
 $\frac{\partial }{\partial {\theta_{j}}}J(\theta) = -\frac{1}{m}\sum\limits_{i=1}^{m}{\frac{\partial }{\partial {\theta_{j}}}f(\theta)}=\frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} $
 
 ## 6.6 进阶优化(Advanced Optimization)
 
-运行梯度下降算法，其能最小化损失函数 $J(\theta)$ 并得出 $\theta$ 的最优值，在使用梯度下降算法时，如果不需要观察损失函数的收敛情况，则直接计算 $J(\theta)$ 的导数项即可，而不需要计算 $J(\theta)$ 值。
+运行梯度下降算法，其能最小化代价函数 $J(\theta)$ 并得出 $\theta$ 的最优值，在使用梯度下降算法时，如果不需要观察代价函数的收敛情况，则直接计算 $J(\theta)$ 的导数项即可，而不需要计算 $J(\theta)$ 值。
 
-我们编写代码给出损失函数及其偏导数然后传入梯度下降算法中，接下来算法则会为我们最小化损失函数给出参数的最优解。这类算法被称为**最优化算法(Optimization Algorithms)**，梯度下降算法不是唯一的最小化算法[^1]。
+我们编写代码给出代价函数及其偏导数然后传入梯度下降算法中，接下来算法则会为我们最小化代价函数给出参数的最优解。这类算法被称为**最优化算法(Optimization Algorithms)**，梯度下降算法不是唯一的最小化算法[^1]。
 
 一些最优化算法：
 - 梯度下降法(Gradient Descent)
@@ -224,7 +224,7 @@ Octave/Matlab 中对这类高级算法做了封装，易于调用。
 
 下面为 Octave/Matlab 求解最优化问题的代码实例：
 
-1. 创建一个函数以返回损失函数及其偏导数：
+1. 创建一个函数以返回代价函数及其偏导数：
 
 ```matlab
 function [jVal, gradient] = costFunction(theta)
@@ -257,7 +257,7 @@ initialTheta = zeros(2,1);
 >
 > `functionVal`: 引用函数最后一次的返回值
 >
-> `exitFlag`: 标记损失函数是否收敛
+> `exitFlag`: 标记代价函数是否收敛
 
 注：Octave/Matlab 中可以使用 `help fminunc` 命令随时查看函数的帮助文档。
 
@@ -345,17 +345,17 @@ exitFlag = 1
   - 减少/惩罚各参数大小(magnitude)，以减轻各参数对模型的影响程度
   - 当有很多参数对于模型只有轻微影响时，正则化方法的表现很好
 
-## 7.2 损失函数(Cost Function)
+## 7.2 代价函数(Cost Function)
 
 很多时候由于特征数量过多，过拟合时我们很难选出要保留的特征，这时候应用正则化方法则是很好的选择。
 
 上文中，$\theta_0 + \theta_1x + \theta_2x^2 + \theta_3x^3 + \theta_4x^4$ 这样一个复杂的多项式较易过拟合，在不减少特征的情况下，**如果能消除类似于 $\theta_3x^3$、$\theta_4x^4$ 等复杂部分，那复杂函数就变得简单了**。
 
-为了保留各个参数的信息，不修改假设函数，改而修改损失函数：
+为了保留各个参数的信息，不修改假设函数，改而修改代价函数：
 
 $min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$
 
-上式中，我们在损失函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项(penalty term) $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化损失函数，那么势必需要极大地**减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
+上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项(penalty term) $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要极大地**减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
 
 ![](image/20180114_090054.png)
 
@@ -363,7 +363,7 @@ $min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cd
 
 根据上面的讨论，有时也无法决定要减少哪个参数，故统一惩罚除了 $\theta_0$ 外的所有参数。
 
-损失函数：
+代价函数：
 
 $J\left( \theta  \right)=\frac{1}{2m}[\sum\limits_{i=1}^{m}{{{({h_\theta}({{x}^{(i)}})-{{y}^{(i)}})}^{2}}+\lambda \sum\limits_{j=1}^{n}{\theta_{j}^{2}}]}$
 
@@ -429,11 +429,11 @@ L =
 
 ## 7.4 逻辑回归正则化(Regularized Logistic Regression)
 
-为逻辑回归的损失函数添加正则化项：
+为逻辑回归的代价函数添加正则化项：
 
 $J(\theta) = - \frac{1}{m} \sum_{i=1}^m \large[ y^{(i)}\ \log (h_\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h_\theta(x^{(i)}))\large] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2$
 
-前文已经证明过逻辑回归和线性回归的损失函数的求导结果是一样的，此处通过给正则化项添加常数 $\frac{1}{2}$，则其求导结果也就一样了。
+前文已经证明过逻辑回归和线性回归的代价函数的求导结果是一样的，此处通过给正则化项添加常数 $\frac{1}{2}$，则其求导结果也就一样了。
 
 从而有应用正则化的逻辑回归梯度下降算法：
 
