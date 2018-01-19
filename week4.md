@@ -50,8 +50,8 @@ BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”
 
 下面列出一些已有概念在神经网络中的别称：
 
-- $x_0$: 偏置单元(bias unit)，$x_0$=1
-- $\theta$: 权重(weight)，即参数。
+- $x_0​$: 偏置单元(bias unit)，$x_0​$=1
+- $\Theta$: 权重(weight)，即参数。
 - 激活函数: $g​$，即逻辑函数等。
 - 输入层: 对应于训练集中的特征 $x$。
 - 输出层: 对应于训练集中的结果 $y$。
@@ -108,7 +108,7 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 定义 $a^{(1)}=x=\left[ \begin{matrix}x_0\\ x_1 \\ x_2 \\ x_3 \end{matrix} \right]$，$\Theta^{(1)}=\left[\begin{matrix}\Theta^{(1)}_{10}& \Theta^{(1)}_{11}& \Theta^{(1)}_{12}& \Theta^{(1)}_{13}\\ \Theta^{(1)}_{20}& \Theta^{(1)}_{21}& \Theta^{(1)}_{22}& \Theta^{(1)}_{23}\\ \Theta^{(1)}_{30}& \Theta^{(1)}_{31}& \Theta^{(1)}_{32} & \Theta^{(1)}_{33}\end{matrix}\right]$，
 
-$\begin{align*}a_1^{(2)} = g(z_1^{(2)}) \newline a_2^{(2)} = g(z_2^{(2)}) \newline a_3^{(2)} = g(z_3^{(2)}) \newline \end{align*}$，$z^{(2)}=\left[ \begin{matrix}z_1^{(2)}\\ z_1^{(2)} \\ z_1^{(2)}\end{matrix} \right]$
+$\begin{align*}a_1^{(2)} = g(z_1^{(2)}) \newline a_2^{(2)} = g(z_2^{(2)}) \newline a_3^{(2)} = g(z_3^{(2)}) \newline \end{align*}​$，$z^{(2)}=\left[ \begin{matrix}z_1^{(2)}\\ z_1^{(2)} \\ z_1^{(2)}\end{matrix} \right]​$
 
 则有 $a^{(2)}= g(\Theta^{(1)}a^{(1)})=g(z^{(2)})$
 
@@ -119,8 +119,6 @@ $\begin{align*}a_1^{(2)} = g(z_1^{(2)}) \newline a_2^{(2)} = g(z_2^{(2)}) \newli
 即有 $z^{(j)}_i = \Theta^{(j-1)}_{i,0}a^{(j-1)}_{0}+ \Theta^{(j-1)}_{i,1}a^{(j-1)}_{1}+\dots+ \Theta^{(j-1)}_{i,n}a^{(j-1)}_{n}$，
 
  $z^{(j)} = \Theta^{(j-1)}a^{(j-1)}$，$a^{(j)} = g(z^{(j)})$，通过该式即可计算神经网络中每一层的值。
-
-结果即 $h_\Theta(x) = a^{(j)} = g(\Theta^{(j-1)}a^{(j-1)}) = g(z^{(j)})$
 
 扩展到所有样本实例：
 
