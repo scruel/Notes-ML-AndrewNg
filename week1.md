@@ -315,25 +315,25 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 
 ![](image/20180106_203726.png)
 
-当 $j = 0, j = 1$ 时，**线性回归中代价函数求导的推导过程：**
+>  当 $j = 0, j = 1$ 时，**线性回归中代价函数求导的推导过程：**
+>
+> $\frac{\partial}{\partial\theta_j} J(\theta_1, \theta_2)=\frac{\partial}{\partial\theta_j} \left(\frac{1}{2m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}} \right)=$
+>
+> $\left(\frac{1}{2m}*2\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} \right)*\frac{\partial}{\partial\theta_j}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} =$
+>
+> $\left(\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} \right)*\frac{\partial}{\partial\theta_j}{{\left(\theta_0{x_0^{(i)}} + \theta_1{x_1^{(i)}}-{{y}^{(i)}} \right)}}$
+>
+> 所以当 $j = 0$ 时：
+>
+> $\frac{\partial}{\partial\theta_0} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} *x_0^{(i)}$
+>
+> 所以当 $j = 1$ 时：
+>
+> $\frac{\partial}{\partial\theta_1} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} *x_1^{(i)}$
 
-$\frac{\partial}{\partial\theta_j} J(\theta_1, \theta_2)=\frac{\partial}{\partial\theta_j} \left(\frac{1}{2m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}} \right)=$
-
-$\left(\frac{1}{2m}*2\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} \right)*\frac{\partial}{\partial\theta_j}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} =$
-
-$\left(\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} \right)*\frac{\partial}{\partial\theta_j}{{\left(\theta_0{x_0^{(i)}} + \theta_1{x_1^{(i)}}-{{y}^{(i)}} \right)}}$
-
-所以当 $j = 0$ 时：
-
-$\frac{\partial}{\partial\theta_0} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} *x_0^{(i)}$
-
-所以当 $j = 1$ 时：
-
-$\frac{\partial}{\partial\theta_1} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} *x_1^{(i)}$
 
 
-
-上文中所提到的梯度下降，都为批量梯度下降(Batch Gradient Descent)，即每次计算都使用**所有**的数据集 $\left(\sum\limits_{i=1}^{m}\right)$ 更新。
+上文中所提到的梯度下降，都为批量梯度下降(Batch Gradient Descent)，即每次计算都使用**所有**的数据集 $\left(\sum\limits_{i=1}^{m}\right)​$ 更新。
 
 由于线性回归函数呈现**碗状**，且**只有一个**全局的最优值，所以函数**一定总会**收敛到全局最小值（学习速率不可过大）。同时，函数 $J$ 被称为**凸二次函数**，而线性回归函数求解最小值问题属于**凸函数优化问题**。
 
