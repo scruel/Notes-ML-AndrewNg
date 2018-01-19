@@ -147,33 +147,33 @@ $$
 [^1]: 一般来说，当 $n$ 超过 10000 时，对于正规方程而言，特征量较大。
 [^2]: 梯度下降算法的普适性好，而对于特定的线性回归模型，正规方程是很好的替代品。
 
-> **正规方程法的推导过程**：
->
->  $\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
->
-> 展开上式可得
->
-> $J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
->
-> 注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
->
-> $J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
->
-> 接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
->
-> $\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
->
-> $\frac{dX^TA}{dX}={A}$
->
-> 所以有:
->
-> $\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)={{X}^{T}}X\theta -{{X}^{T}}y$
->
-> 令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有
-> $$
-> \theta ={{\left( {X^{T}}X \right)}^{-1}}{X^{T}}y
-> $$
->
+**正规方程法的推导过程**：
+
+$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
+
+展开上式可得
+
+$J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
+
+注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
+
+$J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
+
+接下来对$J(\theta )$ 求偏导，根据矩阵的求导法则:
+
+$\frac{dX^TAX}{dX}=(A+A^\mathrm{T})X$
+
+$\frac{dX^TA}{dX}={A}$
+
+所以有:
+
+$\frac{\partial J\left( \theta  \right)}{\partial \theta }=\frac{1}{2m}\left(2{{X}^{T}}X\theta -2{{X}^{T}}y \right)={{X}^{T}}X\theta -{{X}^{T}}y$
+
+令$\frac{\partial J\left( \theta  \right)}{\partial \theta }=0$, 则有
+$$
+\theta ={{\left( {X^{T}}X \right)}^{-1}}{X^{T}}y
+$$
+
 
 
 ## 4.7 不可逆性正规方程(Normal Equation Noninvertibility)
