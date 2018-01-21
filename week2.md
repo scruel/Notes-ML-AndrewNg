@@ -79,9 +79,9 @@ $$
 
 除了以上图人工选择并除以一个参数的方式，**均值归一化(Mean normalization)**方法更为便捷，可采用它来对所有特征值统一缩放：
 
- $x_i=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$
+ $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$
 
-对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1$，类似于 $1\leqslant x \leqslant 3$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 $，$-0.00001 \leqslant x \leqslant 0.00001$，就显得过大/过小了。
+对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1​$，类似于 $1\leqslant x \leqslant 3​$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 ​$，$-0.00001 \leqslant x \leqslant 0.00001​$，就显得过大/过小了。
 
 另外注意，一旦采用特征缩放，我们就需对所有的输入采用特征缩放，包括训练集、测试集、预测输入等。
 
