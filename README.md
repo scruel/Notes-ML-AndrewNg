@@ -11,8 +11,7 @@ https://www.coursera.org/learn/machine-learning
 本项目包含课程中的所有课后作业以及笔记，目前正在将手写笔记进行电子化。
 
 1. 笔记(notes)都为中文，为了便于复习和扩充等，尽量会按照视频目录，以及视频内容进行提炼整理。
-
-2. 所有课后作业(assignments)都已提交并通过 Coursera 编程测验。仅供参考，请勿抄袭。
+2. 遵循[荣誉准则][honor code]，现已移除已通过的课后编程作业的源代码，之后会改为指导笔记形式陆续更新。
 
 
 For Andrew Ng's machine learning course on Coursera.
@@ -26,11 +25,11 @@ You can read it by Typora or any other similar markdown editor.
 
 1. **在线阅读地址**：http://scruel.gitee.io/ml-andrewng-notes/
 
-2. 直接在 GitHub Page 上阅读，需安装 Chrome 插件 —— [GitHub with MathJax][1]（部分公式仍无法正常解析）。
+2. 直接在 GitHub Page 上阅读，需安装 Chrome 插件 —— [GitHub with MathJax][GitHub with MathJax]（部分公式仍无法正常解析）。
 
 3. 下载 .html 网页文件及 笔记图片 image 文件夹，浏览器打开阅读。
 
-4. 笔记源码(.md)基于支持 LaTeX 的 markdown 编辑器 [Typora][2]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
+4. 笔记源码(.md)基于支持 LaTeX 的 markdown 编辑器 [Typora][Typora]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
 
 
 
@@ -39,11 +38,15 @@ You can read it by Typora or any other similar markdown editor.
 
 方便网络不方便的同学学习
 
-[百度网盘下载](https://pan.baidu.com/s/1mkmnRIC) | 密码：fdzc（包含视频，讲义，以及编程作业题原题压缩包）
+[百度网盘下载][baidupan] | 密码：fdzc（包含视频，讲义，以及编程作业题原题压缩包）
 
-[B站在线中英双语](http://www.bilibili.com/video/av9912938?bbid=F8173D95-FF96-47EF-B7F4-0779D698B8051978infoc) | [B站在线英文版1](https://www.bilibili.com/video/av17624209/?from=search&seid=15848135050308500663) | [B站在线英文版2](https://www.bilibili.com/video/av17624412/?from=search&seid=15848135050308500663)
+[B站在线中英双语][bilibili_zh] | [B站在线英文版1][bilibili_en1] | [B站在线英文版2][bilibili_en2]
 
 当然，还是建议克服一下困难，最好能上 Coursera 网站学习，官网安排的贴心小测试可以检验你对知识的掌握情况。
+
+
+
+如果遇到 Coursera 上提交编程作业失败的问题，以 [submitWithConfiguration.m](https://github.com/scruel/ML-AndrewNg-Notes/blob/master/assignments/submitWithConfiguration.m) 覆盖编程作业中 lib 文件夹下的同名文件即可解决。
 
 ## Thanks
 
@@ -55,18 +58,24 @@ You can read it by Typora or any other similar markdown editor.
 注：由于手写笔记成稿时间较早，有所参考无法一一致谢，在此统一表示谢意！
 
 ## License
-[![Creative Commons License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)][3]
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)][CC BY-NC 4.0]
 
-This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License][3].
+This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License][CC BY-NC 4.0].
 
 
 
-[知乎文章](https://zhuanlan.zhihu.com/p/32781741)
+[知乎文章][zhihu]
 
 
 
 By: Scruel
 
-[1]: https://chrome.google.com/webstore/detail/ioemnmodlmafdkllaclgeombjnmnbima
-[2]: https://typora.io/
-[3]: http://creativecommons.org/licenses/by-nc/4.0/
+[zhihu]: https://zhuanlan.zhihu.com/p/32781741
+[baidupan]: https://pan.baidu.com/s/1mkmnRIC
+[bilibili_zh]: http://www.bilibili.com/video/av9912938?bbid=F8173D95-FF96-47EF-B7F4-0779D698B8051978infoc
+[bilibili_en1]: https://www.bilibili.com/video/av17624209/?from=search&amp;seid=15848135050308500663
+[bilibili_en2]: https://www.bilibili.com/video/av17624412/?from=search&amp;seid=15848135050308500663
+[GitHub with MathJax]: https://chrome.google.com/webstore/detail/ioemnmodlmafdkllaclgeombjnmnbima
+[Typora]: https://typora.io/
+[honor code]: https://www.coursera.org/learn/machine-learning/supplement/nh65Z/machine-learning-honor-code
+[CC BY-NC 4.0]: http://creativecommons.org/licenses/by-nc/4.0/
