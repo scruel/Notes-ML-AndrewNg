@@ -8,10 +8,20 @@ https://www.coursera.org/learn/machine-learning
 
 
 
-本项目包含课程中的所有课后作业以及笔记，目前正在将手写笔记进行电子化。
+本项目包含课程中的课后作业以及笔记：
 
 1. 笔记(notes)都为中文，为了便于复习和扩充等，尽量会按照视频目录，以及视频内容进行提炼整理。
 2. 遵循[荣誉准则][honor code]，现已移除已通过的课后编程作业的源代码，之后会改为指导笔记形式陆续更新。
+
+
+
+
+电子版笔记基于手写笔记，时间有限再加上为了追求清晰精确，更新较慢请大佬们谅解😭。
+
+码的很辛苦，大佬们如果觉得笔记整理的还不错，记得保持关注，也欢迎分享哦。
+
+感谢支持(\*^_^\*)。
+
 
 
 For Andrew Ng's machine learning course on Coursera.
@@ -73,8 +83,8 @@ By: Scruel
 [zhihu]: https://zhuanlan.zhihu.com/p/32781741
 [baidupan]: https://pan.baidu.com/s/1mkmnRIC
 [bilibili_zh]: http://www.bilibili.com/video/av9912938?bbid=F8173D95-FF96-47EF-B7F4-0779D698B8051978infoc
-[bilibili_en1]: https://www.bilibili.com/video/av17624209/?from=search&amp;seid=15848135050308500663
-[bilibili_en2]: https://www.bilibili.com/video/av17624412/?from=search&amp;seid=15848135050308500663
+[bilibili_en1]: https://www.bilibili.com/video/av17624209/?from=search&amp;amp;amp;amp;seid=15848135050308500663
+[bilibili_en2]: https://www.bilibili.com/video/av17624412/?from=search&amp;amp;amp;amp;seid=15848135050308500663
 [GitHub with MathJax]: https://chrome.google.com/webstore/detail/ioemnmodlmafdkllaclgeombjnmnbima
 [Typora]: https://typora.io/
 [honor code]: https://www.coursera.org/learn/machine-learning/supplement/nh65Z/machine-learning-honor-code
