@@ -311,7 +311,7 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 梯度下降算法
 - $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}  \right) \newline \rbrace \end{align*}$
 
-直接将线性回归模型公式带入梯度下降公式可得出公式
+直接将线性回归模型公式代入梯度下降公式可得出公式
 
 ![](image/20180106_203726.png)当 $j = 0, j = 1$ 时，**线性回归中代价函数求导的推导过程：**
 
