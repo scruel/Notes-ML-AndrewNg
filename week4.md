@@ -188,9 +188,8 @@ $\Theta^{(1)} =\begin{bmatrix}-30 & 20 & 20 \newline 10 & -20 & -20\end{bmatrix}
 
 ![](image/20180117_011331.png)
 
-如果预测结果 $h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$，
+如果预测结果 $h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$，那么表示 $h_\Theta(x)_3$，即分为第 3 类，对应于图中的摩托车(Motorcycle)。
 
-那么表示 $h_\Theta(x)_3$，即分为第 3 类，对应于图中的摩托车(Motorcycle)。
+**总结一下**
 
-**总结一下**，要分为 $k$ 类，就在输出层放置 $k$ 个输出单元，对于单个样本实例，$h_\Theta(x)$ 则是一个 $k$ 维结果向量，最后依据结果向量，得出属于哪个类 $y^{(i)}$。
-
+多分类问题，要分为 $K$ 类，就在输出层放置 $K$ 个输出单元，对于单个样本实例，预测向量 $h_\Theta(x)$ 为 $K$ 维向量，我们则依据这个预测向量，得出该实例属于哪个类 $y^{(i)}$。注意，神经网络中的预测和结果都是 $K$ 维向量，而不再只是一个实数了。

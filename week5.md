@@ -6,13 +6,13 @@
 
 神经网络的分类问题有两种：
 
-- 二元分类问题(01分类)
+- 二元分类问题(0/1分类)
 
   只有一个输出单元 ($K=1$)
 
-- 多元分类问题
+- 多元($K$)分类问题
 
-  输出单元不止一个($K\gt2$)
+  输出单元不止一个($K\gt1$)
 
 神经网络的代价函数公式：
 
@@ -49,9 +49,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 >
 > $\mathbb{R}^{m\times n}$: 即 $m \times n$ 维矩阵
 
-再次可见，神经网络背后的思想是和逻辑回归一样的。
-
-
+再次可见，神经网络背后的思想是和逻辑回归一样的，但由于计算复杂，实际上神经网络的代价函数 $J(\Theta)$ 是一个非凸(non-convex)函数。
 
 ## 9.2 反向传播算法(Backpropagation Algorithm)
 
@@ -59,38 +57,43 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
 在神经网络中，代价函数看上去虽然不复杂，但要注意到其中 $h_\Theta(x)$ 的求取实际上是由前向传播算法求得，即需从输入层开始，根据每层间的权重矩阵 $\Theta$ 依次计算激活单元的值 $a$。 在最优化代价函数时，我们必然也需要最优化每一层的权重矩阵，再次强调一下，**算法最优化的是权重，而不是输入**。
 
+![](image/20180123_122124.png)
+
 **反向传播算法**用于计算每一层权重矩阵的偏导 $\frac{\partial}{\partial\Theta}J(\Theta)$，算法实际上是对代价函数求导的拆解。
 
-1. 首先运行前向传播算法，对于给定训练集 $\lbrace (x^{(1)}, y^{(1)}) \cdots (x^{(m)}, y^{(m)})\rbrace$ 得到初始预测 $a^{(L)}=h_\Theta(x)$
+1. 对于给定训练集 $\lbrace (x^{(1)}, y^{(1)}) \cdots (x^{(m)}, y^{(m)})\rbrace$ ，初始化每层间的误差和矩阵 $\Delta$，即令所有的 $\Delta^{(l)}_{i,j}=0$，使得每个 $\Delta^{(l)}$ 为一个全零矩阵。
 
-2. 接下来则应用反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
-  ![](image/20180120_105744.png)
+2. 接下来遍历所有样本实例，对于每一个样本实例，有下列步骤：
 
-3. 输出层的误差即为预测与训练集结果的之间的差值：$\delta^{(L)} = a^{(L)} - y$，
+   1. 运行前向传播算法，得到初始预测 $a^{(L)}=h_\Theta(x)$ 。
 
-   对于隐藏层中每一层的误差，都通过上一层的误差来计算：
+   2. 接下来则应用反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
 
-   $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ \frac{\partial a^{(l)}}{\partial z^{(l)}}\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.$
+      ![](image/20180120_105744.png)
 
-   隐藏层中，$a^{(l)}$ 即为增加偏置单元后的 $g(z^{(l)})$，$a^{(l)}$ 与 $\Theta^{(l)}$ 维度匹配，得以完成矩阵运算。
+      输出层的误差即为预测与训练集结果的之间的差值：$\delta^{(L)} = a^{(L)} - y$，
 
-   即对于隐藏层，有 $a^{(l)} = (g(z^{(l)})$ 添加偏置单元 $a^{(l)}_0 = 1)$
+      对于隐藏层中每一层的误差，都通过上一层的误差来计算：
 
-   解得 $\frac{\partial}{\partial z^{(l)}}g(z^{(l)})=g'(z^{(l)})=g(z^{(l)}) .* \ (1-g(z^{(l)}))$，
+      $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ \frac{\partial a^{(l)}}{\partial z^{(l)}}\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.$
 
-   则有 $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ a^{(l)} .*\ (1-a^{(l)}), \ \ a^{(l)}_0 = 1$。
+      隐藏层中，$a^{(l)}$ 即为增加偏置单元后的 $g(z^{(l)})$，$a^{(l)}$ 与 $\Theta^{(l)}$ 维度匹配，得以完成矩阵运算。
 
-   > $\delta^{(l)}$ 求导前的公式不同于视频内容，经核实为视频内容错误。推导请阅下节。
+      即对于隐藏层，有 $a^{(l)} = (g(z^{(l)})$ 添加偏置单元 $a^{(l)}_0 = 1)$
 
-   ​
+      解得 $\frac{\partial}{\partial z^{(l)}}g(z^{(l)})=g'(z^{(l)})=g(z^{(l)}) .* \ (1-g(z^{(l)}))$，
 
-   根据以上公式计算依次每一层的误差 $\delta^{(L)}, \delta^{(L-1)},\dots,\delta^{(2)}$。
+      则有 $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ a^{(l)} .*\ (1-a^{(l)}), \ \ a^{(l)}_0 = 1$。
 
-4. 初始化 $\Delta​$ 矩阵，即令所有的 $\Delta^{(l)}_{i,j}=0​$，使得 $\Delta​$ 为一个全零矩阵。
+      > $\delta^{(l)}$ 求导前的公式不同于视频内容，经核实为视频内容错误。推导请阅下节。
 
-   然后依次求解 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
+      ​
 
-5. 求解完 $\Delta$ 后，最后则可求得偏导 $\frac \partial {\partial \Theta_{i,j}^{(l)}} J(\Theta)=D_{i,j}^{(l)}$
+      根据以上公式计算依次每一层的误差 $\delta^{(L)}, \delta^{(L-1)},\dots,\delta^{(2)}$。
+
+   3. 然后依次求解累加误差 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
+
+3. 遍历全部样本实例，求解完 $\Delta$ 后，最后则求得偏导 $\frac \partial {\partial \Theta_{i,j}^{(l)}} J(\Theta)=D_{i,j}^{(l)}$
 
    - $D^{(l)}_{i,j} := \dfrac{1}{m}\left(\Delta^{(l)}_{i,j} + \lambda\Theta^{(l)}_{i,j}\right)$, if $j\neq0$,
    - $D^{(l)}_{i,j} := \dfrac{1}{m}\Delta^{(l)}_{i,j}$, if $j=0$.（对应于偏置单元）
@@ -137,8 +140,6 @@ $\delta_j^{(l)} = \dfrac{\partial}{\partial z_j^{(l)}} cost(t)$
 不过，这块还是有些不好理解，可回顾视频。
 
 前文提到输入层没有偏差，所以没有 $\delta^{(1)}$，同样的，偏置单元的值始终为 1，也没有误差，故一般会选择**忽略偏置单元项的误差**。
-
-下面以实际例子为基础给出推导证明。
 
 
 
@@ -222,14 +223,112 @@ $$
 
 在 Octave/Matlab 中，如果要使用类似于 `fminunc` 等高级最优化函数，其函数参数、函数返回值等都为且只为向量，而由于神经网络中的权重是多维矩阵，所以需要用到参数展开这个技巧。
 
-将矩阵展开成向量
+说白了，这个技巧就是把多个矩阵转换为一个长长的向量，便于传入函数，之后再根据矩阵维度，转回矩阵即可。
 
+Octave/Matlab 代码：
 
+```octave
+% 多个矩阵展开为一个向量
+Theta1 = ones(11, 10);    % 创建维度为 11 * 10 的矩阵
+Theta2 = ones(2, 4) * 2;  % 创建维度为 2 * 4 的矩阵
+ThetaVec = [Theta1(:); Theta2(:)]; % 将上面两个矩阵展开为向量
+
+% 从一个向量重构还原回多个矩阵
+Theta1 = reshape(ThetaVec(1:110), 11, 10)
+Theta2 = reshape(ThetaVec(111:118), 2, 4)
+% Theta2 = reshape(ThetaVec(111:(111 + 2 * 4) - 1), 2, 4)
+```
+
+> `reshape(A,m,n)`: 将向量 A 重构为 m * n 维矩阵。
 
 ## 9.5 梯度检验(Gradient Checking)
 
+由于神经网络模型中的反向传播算法较为复杂，在小细节非常容易出错，从而无法得到最优解，故引入梯度检验。
+
+梯度检验采用数值估算(Numerical estimation)梯度的方法，被用于验证反向传播算法的正确性。
+
+![](image/20180125_162704.png)
+
+把视 $\Theta$ 为一个实数，数值估算梯度的原理如上图所示，即有 $\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}$
+
+其中，$\epsilon$ 为极小值，由于太小时容易出现数值运算问题，一般取 $10^{-4}$。
+
+
+
+对于矩阵 $\Theta$，有 $\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}$
+
+Octave/Matlab 代码：
+
+```octave
+epsilon = 1e-4;
+for i = 1:n,
+  thetaPlus = theta;
+  thetaPlus(i) += epsilon;
+  thetaMinus = theta;
+  thetaMinus(i) -= epsilon;
+  gradApprox(i) = (J(thetaPlus) - J(thetaMinus))/(2*epsilon);
+end
+```
+
+在得出 gradApprox 梯度向量后，将其同之前计算的偏导 $D$ 比较，如果相等或很接近，即说明算法没有问题。
+
+在确认算法**没有问题后**（一般只需运行一次），由于数值估计的梯度检验效率很低，所以一定要**禁用它**。
+
 ## 9.6 随机初始化(Random Initialization)
 
-## 9.7 总结起来(Putting It Together)
+逻辑回归中，初始参数向量全为 0 没什么问题，在神经网络中，情况就不一样了。
+
+初始权重如果全为 0，忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，则隐藏层除了偏置单元，都为 0，而每个单元求导的值也都一样，这就相当于是在不断**重复计算同一结果**，也就是算着算着，一堆特征在每一层都变成只有一个特征（虽然有很多单元，但值都相等），这样，神经网络的性能和效果都会大打折扣，故需要随机初始化初始权重。
+
+随机初始化权重矩阵也为实现细节之一，用于打破对称性(Symmetry Breaking)，使得 $\Theta^{(l)}_{ij} \in [-\epsilon,\epsilon]$ 。
+
+Octave/Matlab 代码：
+
+当然，初始权重的波动也不能太大，一般限定在极小值 $\epsilon​$ 范围内，即 $\Theta^{(l)}_{i,j} \in [-\epsilon, \epsilon]​$。
+
+```octave
+If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11.
+
+Theta1 = rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
+Theta2 = rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
+Theta3 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
+```
+
+> `rand(m,n)`: 返回一个在区间 (0,1) 内均匀分布的随机矩阵。
+>
+> $\epsilon$: 和梯度下降中的 $\epsilon$ 没有联系，这里只是一个任意实数，给定了权重矩阵初始化值的范围。
+
+## 9.7 综合起来(Putting It Together)
+
+一般来说，应用神经网络有如下步骤：
+
+1. 神经网络的建模（后续补充）
+   - 选取特征，确定特征向量 $x$ 的维度，即输入单元的数量。
+   - 鉴别分类，确定预测向量 $h_\Theta(x)$ 的维度，即输出单元的数量。
+   - 确定隐藏层有几层以及每层隐藏层有多少个隐藏单元。
+
+   > 默认情况下，隐藏层至少要有一层，也可以有多层，层数越多一般意味着效果越好，计算量越大。
+
+2. 训练神经网络
+
+   1. 随机初始化初始权重矩阵
+
+   2. 应用前向传播算法计算初始预测
+
+   3. 计算代价函数 $J(\Theta)$ 的值
+
+   4. 应用后向传播宣发计算 $J(\Theta)$ 的偏导数
+
+   5. 使用梯度检验检查算法的正确性，别忘了用完就禁用它
+
+   6. 丢给最优化函数最小化代价函数
+
+      > 由于神经网络的代价函数非凸，最优化时不一定会收敛在全局最小值处，高级最优化函数能确保收敛在某个**局部**最小值处。
+
+
 
 ## 9.8 自主驾驶(Autonomous Driving)
+
+![](image/20180125_195029.png)
+
+描述了神经网络应用于[自动驾驶](https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving)的一个实例，用于打鸡血，笔记略。
