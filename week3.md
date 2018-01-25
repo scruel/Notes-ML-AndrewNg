@@ -178,7 +178,7 @@ $J(\theta) = - \frac{1}{m} \displaystyle \sum_{i=1}^m [y^{(i)}\log (h_\theta (x^
 $f(\theta)={{y}^{(i)}}\log \left( \frac{1}{1+{{e}^{-z}}} \right)+\left( 1-{{y}^{(i)}} \right)\log \left( 1-\frac{1}{1+{{e}^{-z}}} \right)$
 $=-{{y}^{(i)}}\log \left( 1+{{e}^{-z}} \right)-\left( 1-{{y}^{(i)}} \right)\log \left( 1+{{e}^{z}} \right)$
 
-忆及 $z=\Theta^Tx^{(i)}$，对 $\theta_j$ 求偏导则没有 $\theta_j$ 的项求偏导即为 $0$，都消去，则得：
+忆及 $z=\theta^Tx^{(i)}$，对 $\theta_j$ 求偏导则没有 $\theta_j$ 的项求偏导即为 $0$，都消去，则得：
 
 $\frac{\partial z}{\partial {\theta_{j}}}=\frac{\partial }{\partial {\theta_{j}}}\left( \theta^Tx^{(i)}  \right)=x^{(i)}_j$
 
