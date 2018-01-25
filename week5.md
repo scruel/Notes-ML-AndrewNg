@@ -61,8 +61,6 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
 **反向传播算法**用于计算每一层权重矩阵的偏导 $\frac{\partial}{\partial\Theta}J(\Theta)$，算法实际上是对代价函数求导的拆解。
 
-![](image/20180123_122124.png)
-
 1. 首先运行前向传播算法，对于给定训练集 $\lbrace (x^{(1)}, y^{(1)}) \cdots (x^{(m)}, y^{(m)})\rbrace$ 得到初始预测 $a^{(L)}=h_\Theta(x)$
 
 2. 接下来则应用反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
@@ -70,13 +68,25 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
 3. 输出层的误差即为预测与训练集结果的之间的差值：$\delta^{(L)} = a^{(L)} - y$，
 
-   对于隐藏层中每一层的误差，都通过上一层的误差来计算： $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ g'(z^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.$
+   对于隐藏层中每一层的误差，都通过上一层的误差来计算：
 
-   解得 $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ a^{(l)} .* \ (1-a^{(l)})$。
+   $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ \frac{\partial a^{(l)}}{\partial z^{(l)}}\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.$
+
+   隐藏层中，$a^{(l)}$ 即为增加偏置单元后的 $g(z^{(l)})$，$a^{(l)}$ 与 $\Theta^{(l)}$ 维度匹配，得以完成矩阵运算。
+
+   即对于隐藏层，有 $a^{(l)} = (g(z^{(l)})$ 添加偏置单元 $a^{(l)}_0 = 1)$
+
+   解得 $\frac{\partial}{\partial z^{(l)}}g(z^{(l)})=g'(z^{(l)})=g(z^{(l)}) .* \ (1-g(z^{(l)}))$，
+
+   则有 $\delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ a^{(l)} .*\ (1-a^{(l)}), \ \ a^{(l)}_0 = 1$。
+
+   > $\delta^{(l)}$ 求导前的公式不同于视频内容，经核实为视频内容错误。推导请阅下节。
+
+   ​
 
    根据以上公式计算依次每一层的误差 $\delta^{(L)}, \delta^{(L-1)},\dots,\delta^{(2)}$。
 
-4. 初始化 $\Delta$ 矩阵，即令所有的 $\Delta^{(l)}_{i,j}=0$，使得 $\Delta$ 为一个全零矩阵。
+4. 初始化 $\Delta​$ 矩阵，即令所有的 $\Delta^{(l)}_{i,j}=0​$，使得 $\Delta​$ 为一个全零矩阵。
 
    然后依次求解 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
 
@@ -96,7 +106,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 >
 > 
 >
-> 注意：无需计算 $\delta^{(1)}$，因为输入没有误差。
+> 注：无需计算 $\delta^{(1)}$，因为输入没有误差。
 
 这就是反向传播算法，即从输出层开始不断**向前迭代**，根据**上一层**的误差依次计算当前层的误差，以求得代价函数的偏导。
 
@@ -124,7 +134,11 @@ $\delta_j^{(l)} = \dfrac{\partial}{\partial z_j^{(l)}} cost(t)$
 
 > 反向传播算法，即从输出层开始不断**向前迭代**，根据**上一层**的误差依次计算当前层的误差，以求得代价函数的偏导。
 
-不过，这块还是有些不好理解，可回顾视频。下面以实际例子为基础给出证明。
+不过，这块还是有些不好理解，可回顾视频。
+
+前文提到输入层没有偏差，所以没有 $\delta^{(1)}$，同样的，偏置单元的值始终为 1，也没有误差，故一般会选择**忽略偏置单元项的误差**。
+
+下面以实际例子为基础给出推导证明。
 
 
 
@@ -138,17 +152,17 @@ $\begin{gather*} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \left[y^{(i)} \log ((h_\
 
 $\begin{gather*} J(\Theta) = -\left[y \log ((h_\Theta (x))) + (1 - y)\log (1 - (h_\Theta(x)))\right] \end{gather*}$
 
-忆及 $a^{(l)}=g(z^{(l)})$，$h_\Theta(x) = a^{(L)}$，$g(z) = \frac{1}{1+e^{(-z)}}$，代入后整理后可得：
+忆及 $h_\Theta(x) = a^{(L)} = g(z^{(L)})$，$g(z) = \frac{1}{1+e^{(-z)}}$，代入后整理后可得：
 
-$J(\Theta) ={y}\log \left( 1+{{e}^{-z}} \right)+\left( 1-{y} \right)\log \left( 1+{{e}^{z}} \right)$
+$J(\Theta) ={y}\log \left( 1+{{e}^{-z^{(L)}}} \right)+\left( 1-{y} \right)\log \left( 1+{{e}^{z^{(L)}}} \right)$
 
 ![](image/20180121_110111.png)
 
 再次为了便于计算，我们用到如上图这个四层神经网络。
 
-我们有 $h_\Theta(x)=a^{(4)}= g(z^{(4)})=g(\Theta^{(3)}a^{(3)})$
+忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，我们有 $h_\Theta(x)=a^{(4)}= g(z^{(4)})=g(\Theta^{(3)}a^{(3)})$
 
-观察考虑各变量与 $\Theta^{(3)}$ 之间的关系，有 $J(\Theta) \rightarrow  a^{(4)}\rightarrow z^{(4)}\rightarrow \Theta^{(3)}$ 
+观察考虑各变量与 $\Theta^{(3)}$ 之间的关系，有 $J(\Theta) \rightarrow  a^{(4)}\rightarrow z^{(4)}\rightarrow \Theta^{(3)}$
 
 要计算 $J(\Theta)$ 的偏导，就要按照关系不断往前看，每一次回头看，就称为一次反向传播。
 
@@ -156,21 +170,21 @@ $J(\Theta) ={y}\log \left( 1+{{e}^{-z}} \right)+\left( 1-{y} \right)\log \left( 
 
 如果你还记得微积分（不然你应该也不会看到这里(\*^_^\*)~），听起来像不像在暗示链式求导？
 
-令 $\delta^{(l)} = \frac{\partial}{\partial z^{(l)}} J(\Theta)$，则有  $J(\Theta)$ 关于 $\Theta^{(3)}$ 的偏导：
+令 $\delta^{(l)} = \frac{\partial}{\partial z^{(l)}} J(\Theta)$，则有 $J(\Theta)$ 关于 $\Theta^{(3)}$ 的偏导：
 
 $\frac{\partial}{\partial\Theta^{(3)}} J(\Theta) = \frac{\partial J(\Theta)}{\partial z^{(4)}}   \frac{\partial z^{(4)}}{\partial\Theta^{(3)}} = \delta^{(4)}\frac{\partial z^{(4)}}{\partial\Theta^{(3)}}$
 
-忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，则 $\frac{\partial z^{(4)}}{\partial\Theta^{(3)}} = a^{(3)}$
+再次忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，则 $\frac{\partial z^{(4)}}{\partial\Theta^{(3)}} = a^{(3)}$
 
 则对于输出层，我们证得 $\frac{\partial}{\partial\Theta^{(3)}} J(\Theta) =  a^{(3)}\delta^{(4)}$。
 
-再次忆及 $a^{(l)}=g(z^{(l)}), \ g(z) = \frac{1}{1+e^{-z}}$
+再次忆及 $g(z) = \frac{1}{1+e^{-z}}$，$a^{(L)}=g(z^{(L)})$
 
 $\delta^{(4)}=\frac{\partial}{\partial z^{(4)}}J(\Theta)={{y}}\frac{-e^{-z^{(4)}}}{1+e^{-z^{(4)}}}+\left( 1-{{y}} \right)\frac{{e^{z^{(4)}}}}{1+e^{z^{(4)}}} = g(z^{(4)}) - y = a^{(4)}-y$
 
 即证得 $\delta^{(4)} = a^{(4)}-y$
 
-对于任意的输出层单元，有 $J(\Theta) \rightarrow  a^{(L)}\rightarrow z^{(L)}\rightarrow \Theta^{(L-1)}$ 关系不变，故证得：
+对于任意的输出层 $L$ 及 $\Theta^{(L-1)}$，有 $J(\Theta) \rightarrow  a^{(L)}\rightarrow z^{(L)}\rightarrow \Theta^{(L-1)}$ 关系不变，故证得：
 $$
 \frac{\partial}{\partial\Theta^{(L-1)}} J(\Theta) =  a^{(L-1)}\delta^{(L)}, \ \ \delta^{(L)} = a^{(L)}-y
 $$
@@ -186,15 +200,17 @@ $\delta^{(3)} = \frac{\partial}{\partial z^{(3)}}J(\Theta) =\frac{\partial J(\Th
 
 $g'(z) =\frac{e^{-z}}{(1+e^{-z})^2}=\frac{(1+e^{-z})-1}{(1+e^{-z})^2}=\frac{1}{1+e^{-z}}-\frac{1}{(1+e^{-z})^2}=g(z)(1-g(z))$
 
-则 $g'(z^{(l)})=a^{(l)} .* \ (1-a^{(l)})$
+即 $g'(z^{(l)})=g(z^{(l)}) .* \ (1-g(z^{(l)}))$
 
-则 $\frac{\partial a^{(3)}}{\partial z^{(3)}} = g'(z^{(3)}) =a^{(4)} .* \ (1-a^{(4)})$
+有 $a^{(l)} = (g(z^{(l)})$ 添加偏置单元 $a^{(l)}_0 = 1)$，则 $\frac{\partial a^{(3)}}{\partial z^{(3)}}=a^{(3)} .*\ (1-a^{(3)})$，
 
-即证得 $\delta^{(3)}=(\Theta^{(3)})^T\delta^{(4)}.*g(z^{(3)})$
+> 证明时为先求导后添加偏置单元，与前向传播算法顺序一致，实际实现时，求导和添加偏置单元的顺序可作调换，由于一般选择忽略偏置单元的误差，所以并不影响结果。
 
-实际上所有隐藏层都可以上面的方式求解并得到同一结果，故证得：
+即证得 $\delta^{(3)}=(\Theta^{(3)})^T\delta^{(4)}.*(a^{(3)})'=(\Theta^{(3)})^T\delta^{(4)}.*\ a^{(3)} .*\ (1-a^{(3)})$
+
+对于任意的隐藏层 $l + 1​$ 及 $\Theta^{(l)}​$，有 $J(\Theta)\rightarrow a^{(L)} \rightarrow z^{(L)} \rightarrow \dots \rightarrow a^{(l+1)} \rightarrow z^{(l+1)} \rightarrow\Theta^{(l)}​$ 关系不变，故证得：
 $$
-\frac{\partial}{\partial\Theta^{(l)}} J(\Theta) =  a^{(l)}\delta^{(l+1)}, \ \ \delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)} .*\ g'(z^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.
+\frac{\partial}{\partial\Theta^{(l)}} J(\Theta) =  a^{(l)}\delta^{(l+1)}, \ \ \delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)}.*\ a^{(l)} .*\ (1-a^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.
 $$
 再添回为了计算方便去掉的 $\frac{1}{m}$和正则化项（时刻记住偏置单元不正则化），即为上节中 $J(\Theta)$ 的偏导。
 
@@ -204,10 +220,16 @@ $$
 
 ## 9.4 实现注意点: 参数展开(Implementation Note: Unrolling Parameters)
 
+在 Octave/Matlab 中，如果要使用类似于 `fminunc` 等高级最优化函数，其函数参数、函数返回值等都为且只为向量，而由于神经网络中的权重是多维矩阵，所以需要用到参数展开这个技巧。
+
+将矩阵展开成向量
+
+
+
 ## 9.5 梯度检验(Gradient Checking)
 
 ## 9.6 随机初始化(Random Initialization)
 
-## 9.7 Putting It Together
+## 9.7 总结起来(Putting It Together)
 
 ## 9.8 自主驾驶(Autonomous Driving)
