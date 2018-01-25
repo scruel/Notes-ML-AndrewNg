@@ -61,7 +61,7 @@ $$
 \theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))
 $$
 
-> $X$: 训练集数据，$m\times(n+1)$ 维矩阵（包含额外特征 $x_0=1$）
+> $X$: 训练集数据，$m\times(n+1)$ 维矩阵（包含基本特征 $x_0=1$）
 
 ## 4.3 梯度下降实践1-特征值缩放(Gradient Descent in Practice I - Feature Scaling)
 
