@@ -67,7 +67,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
    1. 运行前向传播算法，得到初始预测 $a^{(L)}=h_\Theta(x)$ 。
 
-   2. 接下来则应用反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
+   2. 运行反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
 
       ![](image/20180120_105744.png)
 
@@ -91,7 +91,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
       根据以上公式计算依次每一层的误差 $\delta^{(L)}, \delta^{(L-1)},\dots,\delta^{(2)}$。
 
-   3. 然后依次求解累加误差 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
+   3. 依次求解并累加误差 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
 
 3. 遍历全部样本实例，求解完 $\Delta$ 后，最后则求得偏导 $\frac \partial {\partial \Theta_{i,j}^{(l)}} J(\Theta)=D_{i,j}^{(l)}$
 
@@ -209,11 +209,11 @@ $g'(z) =\frac{e^{-z}}{(1+e^{-z})^2}=\frac{(1+e^{-z})-1}{(1+e^{-z})^2}=\frac{1}{1
 
 即证得 $\delta^{(3)}=(\Theta^{(3)})^T\delta^{(4)}.*(a^{(3)})'=(\Theta^{(3)})^T\delta^{(4)}.*\ a^{(3)} .*\ (1-a^{(3)})$
 
-对于任意的隐藏层 $l + 1​$ 及 $\Theta^{(l)}​$，有 $J(\Theta)\rightarrow a^{(L)} \rightarrow z^{(L)} \rightarrow \dots \rightarrow a^{(l+1)} \rightarrow z^{(l+1)} \rightarrow\Theta^{(l)}​$ 关系不变，故证得：
+对于任意的隐藏层 $l + 1$ 及权重矩阵 $\Theta^{(l)}$，有 $J(\Theta)\rightarrow a^{(L)} \rightarrow z^{(L)} \rightarrow \dots \rightarrow a^{(l+1)} \rightarrow z^{(l+1)} \rightarrow\Theta^{(l)}$ 关系不变，故证得：
 $$
 \frac{\partial}{\partial\Theta^{(l)}} J(\Theta) =  a^{(l)}\delta^{(l+1)}, \ \ \delta^{(l)} = (\Theta^{(l)})^T\delta^{(l+1)}.*\ a^{(l)} .*\ (1-a^{(l)})\; \; \; \; \;  \text{for }l := L-1, L-2,\dots,2.
 $$
-再添回为了计算方便去掉的 $\frac{1}{m}$和正则化项（时刻记住偏置单元不正则化），即为上节中 $J(\Theta)$ 的偏导。
+再添回为了计算方便去掉的 $\frac{1}{m}$ 和正则化项（时刻记住偏置单元不正则化）等，即可得上节中 $J(\Theta)$ 的偏导。
 
 
 
@@ -331,4 +331,4 @@ Theta3 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 
 ![](image/20180125_195029.png)
 
-描述了神经网络应用于[自动驾驶](https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving)的一个实例，用于打鸡血，笔记略。
+描述了神经网络在于[自动驾驶](https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving)领域的应用实例，用于打鸡血，笔记略。
