@@ -74,17 +74,17 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 In
 
 
 
+Copyright © Scruel. All Rights Reserved.
+
+
+
 [知乎文章][zhihu]
-
-
-
-By: Scruel
 
 [zhihu]: https://zhuanlan.zhihu.com/p/32781741
 [baidupan]: https://pan.baidu.com/s/1mkmnRIC
-[bilibili_zh]: http://www.bilibili.com/video/av9912938?bbid=F8173D95-FF96-47EF-B7F4-0779D698B8051978infoc
-[bilibili_en1]: https://www.bilibili.com/video/av17624209/?from=search&amp;amp;amp;amp;seid=15848135050308500663
-[bilibili_en2]: https://www.bilibili.com/video/av17624412/?from=search&amp;amp;amp;amp;seid=15848135050308500663
+[bilibili_zh]: http://www.bilibili.com/video/av9912938
+[bilibili_en1]: https://www.bilibili.com/video/av17624209
+[bilibili_en2]: https://www.bilibili.com/video/av17624412/
 [GitHub with MathJax]: https://chrome.google.com/webstore/detail/ioemnmodlmafdkllaclgeombjnmnbima
 [Typora]: https://typora.io/
 [honor code]: https://www.coursera.org/learn/machine-learning/supplement/nh65Z/machine-learning-honor-code
