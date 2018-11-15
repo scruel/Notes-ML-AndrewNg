@@ -13,22 +13,9 @@ https://www.coursera.org/learn/machine-learning
 1. 笔记(notes)都为中文，为了便于复习和扩充等，尽量会按照视频目录，以及视频内容进行提炼整理。
 2. 遵循[荣誉准则][honor code]，现已移除已通过的课后编程作业的源代码，之后会改为指导笔记形式陆续更新。
 
+感谢关注，欢迎分享。
 
-
-
-电子版笔记基于手写笔记，时间有限再加上为了追求清晰精确，更新较慢请大佬们谅解😭。
-
-码的很辛苦，大佬们如果觉得笔记整理的还不错，记得保持关注，也欢迎分享哦。
-
-感谢支持(\*^_^\*)。
-
-
-
-For Andrew Ng's machine learning course on Coursera.
-
-Including assignments and notes, notes are WIP.
-
-You can read it by Typora or any other similar markdown editor.
+[知乎文章][zhihu]
 
 
 ## Read
@@ -40,8 +27,6 @@ You can read it by Typora or any other similar markdown editor.
 3. 下载 .html 网页文件及 笔记图片 image 文件夹，浏览器打开阅读。
 
 4. 笔记源码(.md)基于支持 LaTeX 的 markdown 编辑器 [Typora][Typora]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
-
-
 
 
 ## Resources
@@ -72,13 +57,17 @@ You can read it by Typora or any other similar markdown editor.
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License][CC BY-NC 4.0].
 
-
-
 Copyright © Scruel. All Rights Reserved.
 
+**注：转载请注明出处，禁止用于任何商业用途（包括广告形式）**
+
+## Donate
+
+觉得不错，不如请我喝杯咖啡：
+![image](image/20181115103549.png)
 
 
-[知乎文章][zhihu]
+
 
 [zhihu]: https://zhuanlan.zhihu.com/p/32781741
 [baidupan]: https://pan.baidu.com/s/1mkmnRIC
