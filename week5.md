@@ -53,7 +53,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
 ## 9.2 反向传播算法(Backpropagation Algorithm)
 
-类似于回归模型中的梯度下降算法，为了求解神经网络最优化问题，我们也要计算 $\frac{\partial}{\partial\Theta}J(\Theta)$，以此$\underset{\Theta}{\text{minimize}}J(\Theta)$ 。
+类似于回归模型中的梯度下降算法，为了求解神经网络最优化问题，我们也要计算 $\frac{\partial}{\partial\Theta}J(\Theta)$，以此 $\underset{\Theta}{\text{minimize}}J(\Theta)$ 。
 
 在神经网络中，代价函数看上去虽然不复杂，但要注意到其中 $h_\Theta(x)$ 的求取实际上是由前向传播算法求得，即需从输入层开始，根据每层间的权重矩阵 $\Theta$ 依次计算激活单元的值 $a$。 在最优化代价函数时，我们必然也需要最优化每一层的权重矩阵，再次强调一下，**算法最优化的是权重，而不是输入**。
 
