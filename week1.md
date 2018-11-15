@@ -28,7 +28,7 @@
 
 ## 1.2 什么是机器学习(What is Machine Learning)
 1. 机器学习定义
-  这里主要有两种定义：
+    这里主要有两种定义：
 
   - Arthur Samuel (1959). Machine Learning: Field of study that gives computers the ability to learn without being explicitly programmed.
 
@@ -128,15 +128,13 @@
 ## 2.1 模型表示(Model Representation)
 
 1. 房价预测训练集
-
-  | Size in $feet^2$ ($x$) | Price (\$) in 1000's($y$) |
-  | ---------------------- | ------------------------- |
-  | 2104                   | 460                       |
-  | 1416                   | 232                       |
-  | 1534                   | 315                       |
-  | 852                    | 178                       |
-  | ...                    | ...                       |
-
+| Size in $feet^2$ ($x$) | Price (\$) in 1000's($y$) |
+| ---------------------- | ------------------------- |
+| 2104                   | 460                       |
+| 1416                   | 232                       |
+| 1534                   | 315                       |
+| 852                    | 178                       |
+| ...                    | ...                       |
 
 房价预测训练集中，同时给出了输入 $x$ 和输出结果 $y$，即给出了人为标注的**”正确结果“**，且预测的量是连续的，属于监督学习中的回归问题。
 
@@ -160,7 +158,7 @@ $h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式
 >
 > 吴恩达(Andrew Ng)老师在其公开课中对两者做了细分。**如果要听他的课做作业，不细分这两个概念是会被打小手扣分的**！这也可能是因为老师发现了业内混用的乱象，想要治一治吧。
 >
-> **损失函数**(Loss/Error Function): 计算**单个**训练集的误差
+> **损失函数**(Loss/Error Function): 计算**单个**样本的误差。[link](https://www.coursera.org/learn/neural-networks-deep-learning/lecture/yWaRd/logistic-regression-cost-function)
 >
 > **代价函数**(Cost Function): 计算整个训练集**所有损失函数之和的平均值**
 >
@@ -205,7 +203,7 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 - 代价函数(Cost Function): $ J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}} $
 - 目标(Goal): $\underset{\theta_0, \theta_1}{\text{minimize}} J \left(\theta_0, \theta_1 \right)$
 
-为了直观理解代价函数到底是在做什么，先假设 $\theta_1 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。
+为了直观理解代价函数到底是在做什么，先假设 $\theta_1 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)​$ 的变化。
 
 ![](image/20180106_085915.png)
 
