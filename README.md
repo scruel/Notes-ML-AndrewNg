@@ -59,7 +59,9 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 In
 
 Copyright © Scruel. All Rights Reserved.
 
-**注：转载请注明出处，禁止用于任何商业用途（包括广告形式）**
+
+
+本人所作的所有笔记内容**禁止任何商业形式（包括广告形式）的转载**，非商业形式的转载**请先联系我授权**，在承诺不会用于商业用途后方可使用，且需声明转载地址（GitHub）。 
 
 ## Donate
 
