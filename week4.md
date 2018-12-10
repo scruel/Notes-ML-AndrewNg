@@ -10,7 +10,7 @@
 
 那特征能有多大呢？下面是一个计算机视觉中的例子：
 
-![](image/20180115_084326.png)
+![](images/20180115_084326.png)
 
 如上图，如果选取一小块 $50 * 50$ 像素的灰度图片（一个像素只有亮度一个值），选择每个像素点作为特征，则特征总量 $n=2500$（换成 RGB（一个像素有三个值），则 $n = 7500$），如果将其两两组合作为新特征，则特征数量将为 $C_{2500}^{2} \approx 3\ million$。
 
@@ -22,11 +22,11 @@
 
 下图是根据研究做的一些应用（有兴趣可回顾视频）：
 
-![](image/20180115_101441.png)
+![](images/20180115_101441.png)
 
 BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”东西
 
-![](image/20180115_101442.png)
+![](images/20180115_101442.png)
 
 触觉皮带：在朝北时蜂鸣器会发出声响，可使人拥有方向感（声音信号转换为方向信号）。
 
@@ -34,7 +34,7 @@ BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”
 
 既然神经网络模仿的是大脑神经元，那就先看一下大脑的神经元长什么样吧：
 
-![来源: http://blog.csdn.net/zzwu/article/details/574931](image/20141213201613758.jpg)
+![来源: http://blog.csdn.net/zzwu/article/details/574931](images/20141213201613758.jpg)
 
 想象一下印刷厂中流水线的工人（机器人也算哦），每个工人都有特定的任务，比如装订，塑封，贴防伪标识等等，工人们看到书本并处理完自己的任务后，就回放回传送带，紧接着传送带就传给下一个环节的工人，如此不断重复从而完成一个又一个环节，直到一本书印制完成。
 
@@ -44,7 +44,7 @@ BrainPort  系统：帮助失明人士通过摄像头以及舌尖感官“看”
 
 我们一般把神经网络划分为三部分（注意，不是只有三层！），即输入层(input layer)，隐藏层(hidden layer)和输出层(output layer)。
 
-![](image/20180116_001543.png)
+![](images/20180116_001543.png)
 
 图中的一个圈表示神经网络中的一个激活单元，输入层对应输入单元，隐藏层对应中间单元，输出层则对应输出单元。中间激活单元应用**激活函数**([activation_function](https://en.wikipedia.org/wiki/Activation_function))处理数据。
 
@@ -82,7 +82,7 @@ $Size(\Theta^{(2)})=s_3 \times (s_2 + 1) = 1 \times 4$
 
 ## 8.4 模型表示2(Model Representation II)
 
-![](image/20180116_001543.png)
+![](images/20180116_001543.png)
 
 对输入层(Layer 1)的所有激活单元应用激活函数，从而得到隐藏层(Layer 2)中激活单元的值：
 
@@ -132,7 +132,7 @@ ${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}} {{X}^{T}}$，这时 $z^
 
 当然，神经网络可有多层，每层的激活单元数量也并不固定：
 
-![](image/20180116_105545.png)
+![](images/20180116_105545.png)
 
 > 我们习惯于将输入层称为神经网络的第 0 层，如上图的神经网络被称为三层网络。
 
@@ -144,19 +144,19 @@ ${{z}^{\left( 2 \right)}}={{\Theta }^{\left( 1 \right)}} {{X}^{T}}$，这时 $z^
 
 逻辑与(AND)运算（都为真值则结果才为真）神经网络：
 
-![](image/20180117_000612.png)
+![](images/20180117_000612.png)
 
 $\Theta^{(1)} =\begin{bmatrix}-30 & 20 & 20\end{bmatrix}$，$h_\Theta(x) = g(-30+20x_1+20x_2)$。
 
 回顾 sigmoid 函数图像，根据输入则有上图中右边的表格，即 $h_\theta(x)\approx x_1\ \text{AND}\ x_2$。这样就实现了一个能够进行与运算的神经网络。 
 
-![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
+![sigmoid function](images/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
 
 
 再举一例，逻辑或(OR)运算（有一个真值则结果就为真）神经网络：
 
-![](image/20180117_000349.png)
+![](images/20180117_000349.png)
 
 
 
@@ -164,11 +164,11 @@ $\Theta^{(1)} =\begin{bmatrix}-30 & 20 & 20\end{bmatrix}$，$h_\Theta(x) = g(-30
 
 下面逐步构建复杂一点的神经网络
 
-![](image/20180117_004820.png)
+![](images/20180117_004820.png)
 
 如上图，我们分别构建了三个单层神经网络，将这三个网络组合起来，可得到一个新的神经网络，其可完成逻辑运算中的异或(XNOR)操作：
 
-![](image/20180116_235545.png)
+![](images/20180116_235545.png)
 
 这里的组合即为 $\text{XNOR}=( \text{x}_1\, \text{AND}\, \text{x}_2 )\, \text{OR} \left( \left( \text{NOT}\, \text{x}_1 \right) \text{AND} \left( \text{NOT}\, \text{x}_2 \right) \right)$
 
@@ -182,13 +182,13 @@ $\Theta^{(1)} =\begin{bmatrix}-30 & 20 & 20 \newline 10 & -20 & -20\end{bmatrix}
 
 举一个 4 分类问题的实例：
 
-![](image/20180117_010904.png)
+![](images/20180117_010904.png)
 
 有四种分类情况，那么就让输出层包含 4 个输出单元即可，则 $h_\Theta$ 为 4 维向量。 
 
 神经网络中的多分类算法算是对 one-vs-all 思想的扩展，定义预测结果一共有 4 种情况：
 
-![](image/20180117_011331.png)
+![](images/20180117_011331.png)
 
 如果预测结果 $h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$，那么表示 $h_\Theta(x)_3$，即分为第 3 类，对应于图中的摩托车(Motorcycle)。
 

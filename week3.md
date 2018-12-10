@@ -12,7 +12,7 @@
 
 讨论肿瘤诊断问题：
 
-![](image/20180109_144040.png)
+![](images/20180109_144040.png)
 
 肿瘤诊断问题的目的是告诉病人**是否**为恶性肿瘤，是一个**二元分类问题(binary class problems)**，则定义 $ y \in\lbrace 0, 1\rbrace$，其中 0 表示**负向类(negative class)**，代表恶性肿瘤("-")，1 为**正向类(positive class)**，代表良性肿瘤("+")。如图，定义最右边的样本为**偏差项**。
 
@@ -46,7 +46,7 @@ $$
 
 [sigmoid 函数][2]（如下图）是逻辑函数的特殊情况，其公式为 $g\left( z \right)=\frac{1}{1+{{e}^{-z}}}$。 
 
-![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
+![sigmoid function](images/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
 应用 sigmoid 函数，则逻辑回归模型：$$h_{\theta}(x)=g(\theta^Tx) =\frac{1}{1+e^{-\theta^Tx}}$$
 
@@ -74,7 +74,7 @@ $\begin{align*}& h_\theta(x) \geq 0.5 \rightarrow y = 1 \newline& h_\theta(x) < 
 
 回忆一下 sigmoid 函数的图像：
 
-![sigmoid function](image/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
+![sigmoid function](images/2413fbec8ff9fa1f19aaf78265b8a33b_Logistic_function.png)
 
 观察可得当 $g(z) \geq 0.5$ 时，有 $z \geq 0$，即 $\theta^Tx \geq 0$。
 
@@ -82,7 +82,7 @@ $\begin{align*}& h_\theta(x) \geq 0.5 \rightarrow y = 1 \newline& h_\theta(x) < 
 
 直观一点来个例子，${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2}}\right)​$ 是下图模型的假设函数：
 
-![](image/20180111_000814.png)
+![](images/20180111_000814.png)
 
 根据上面的讨论，要进行分类，那么只要 $ {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2}}\geq0$ 时，就预测 $y = 1$，即预测为正向类。
 
@@ -100,7 +100,7 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 
 
-![](image/20180111_000653.png)
+![](images/20180111_000653.png)
 
 当然，通过一些更为复杂的多项式，还能拟合那些图像显得非常怪异的数据，使得决策边界形似碗状、爱心状等等。
 
@@ -116,11 +116,11 @@ ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2
 
 其中 $h_\theta(x) = g\left(\theta^{T}x \right)$，可绘制关于 $J(\theta)$ 的图像，如下图
 
-![](image/20180111_080314.png)
+![](images/20180111_080314.png)
 
 回忆线性回归中的平方损失函数，其是一个二次凸函数（碗状），二次凸函数的重要性质是只有一个局部最小点即全局最小点。上图中有许多局部最小点，这样将使得梯度下降算法无法确定收敛点是全局最优。
 
-![](image/20180111_080514.png)
+![](images/20180111_080514.png)
 
 如果此处的损失函数也是一个凸函数，是否也有同样的性质，从而最优化？这类讨论凸函数最优值的问题，被称为**凸优化问题(Convex optimization)**。
 
@@ -132,7 +132,7 @@ $\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^
 
 则有关于 $J(\theta)$ 的图像如下：
 
-![](image/20180111_080614.png)
+![](images/20180111_080614.png)
 
 如左图，当训练集的结果为 $y=1$（正样本）时，随着假设函数趋向于 $1$，代价函数的值会趋于 $0$，即意味着拟合程度很好。如果假设函数此时趋于 $0$，则会给出一个**很高的代价**，拟合程度**差**，算法会根据其迅速纠正 $\theta$ 值，右图 $y=0$ 同理。
 
@@ -279,7 +279,7 @@ exitFlag = 1
 
 一直在讨论二元分类问题，这里谈谈多类别分类问题（比如天气预报）。
 
-![](image/20180112_001720.png)
+![](images/20180112_001720.png)
 
 原理是，转化多类别分类问题为**多个二元分类问题**，这种方法被称为 One-vs-all。
 
@@ -310,11 +310,11 @@ exitFlag = 1
   能很好甚至完美拟合训练集中的数据，即 $J(\theta) \to 0$，但是对于不在训练集中的**新数据**，预测值和实际值的误差会很大，**泛化能力弱**，这类情况被称为过拟合。拟合模型过于复杂（特征选多了）时易出现这类情况。类似于，你上课跟着老师做题都会都听懂了，下课遇到新题就懵了不会拓展。
 
 线性模型中的拟合情况(左图欠拟合，右图过拟合)：
-![](image/20180112_091654.png)
+![](images/20180112_091654.png)
 
 
 逻辑分类模型中的拟合情况：
-![](image/20180112_092027.png)
+![](images/20180112_092027.png)
 
 
 
@@ -329,7 +329,7 @@ exitFlag = 1
   指模型预测值的**离散程度或者变化范围**。方差越大，数据的分布越分散，函数波动越大，泛化能力越差。方差低意味着拟合曲线的稳定性高，波动小。
 
 据此，我们有对同一数据的各类拟合情况如下图：
-![](image/20180112_085630.png)
+![](images/20180112_085630.png)
 
 据上图，高偏差意味着欠拟合，高方差意味着过拟合。
 
@@ -358,7 +358,7 @@ $min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cd
 
 上式中，我们在代价函数中增加了 $\theta_3$、$\theta_4$ 的惩罚项(penalty term) $1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$，如果要最小化代价函数，那么势必需要极大地**减小 $\theta_3$、$\theta_4$**，从而使得假设函数中的 $\theta_3x^3$、$\theta_4x^4$ 这两项的参数非常小，就相当于没有了，假设函数也就**“变得”简单**了，从而在保留各参数的情况下避免了过拟合问题。
 
-![](image/20180114_090054.png)
+![](images/20180114_090054.png)
 
 
 

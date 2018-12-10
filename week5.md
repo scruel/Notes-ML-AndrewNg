@@ -57,7 +57,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
 在神经网络中，代价函数看上去虽然不复杂，但要注意到其中 $h_\Theta(x)$ 的求取实际上是由前向传播算法求得，即需从输入层开始，根据每层间的权重矩阵 $\Theta$ 依次计算激活单元的值 $a$。 在最优化代价函数时，我们必然也需要最优化每一层的权重矩阵，再次强调一下，**算法最优化的是权重，而不是输入**。
 
-![](image/20180123_122124.png)
+![](images/20180123_122124.png)
 
 **反向传播算法**用于计算每一层权重矩阵的偏导 $\frac{\partial}{\partial\Theta}J(\Theta)$，算法实际上是对代价函数求导的拆解。
 
@@ -69,7 +69,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
    2. 运行反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
 
-      ![](image/20180120_105744.png)
+      ![](images/20180120_105744.png)
 
       输出层的误差即为预测与训练集结果的之间的差值：$\delta^{(L)} = a^{(L)} - y$，
 
@@ -157,7 +157,7 @@ $\begin{gather*} J(\Theta) = -\left[y \log ((h_\Theta (x))) + (1 - y)\log (1 - (
 
 $J(\Theta) ={y}\log \left( 1+{{e}^{-z^{(L)}}} \right)+\left( 1-{y} \right)\log \left( 1+{{e}^{z^{(L)}}} \right)$
 
-![](image/20180121_110111.png)
+![](images/20180121_110111.png)
 
 再次为了便于计算，我们用到如上图这个三层(输入层一般不计数)神经网络。
 
@@ -247,7 +247,7 @@ Theta2 = reshape(ThetaVec(111:118), 2, 4)
 
 梯度检验采用数值估算(Numerical estimation)梯度的方法，被用于验证反向传播算法的正确性。
 
-![](image/20180125_162704.png)
+![](images/20180125_162704.png)
 
 把视 $\Theta$ 为一个实数，数值估算梯度的原理如上图所示，即有 $\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}$
 
@@ -329,6 +329,6 @@ Theta3 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 
 ## 9.8 自主驾驶(Autonomous Driving)
 
-![](image/20180125_195029.png)
+![](images/20180125_195029.png)
 
 描述了神经网络在于[自动驾驶](https://www.coursera.org/learn/machine-learning/lecture/zYS8T/autonomous-driving)领域的应用实例，用于打鸡血，笔记略。
