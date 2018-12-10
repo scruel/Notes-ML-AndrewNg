@@ -64,7 +64,8 @@ Copyright © Scruel. All Rights Reserved.
 ## Donate
 
 觉得不错，不如请我喝杯咖啡：
-![image](image/20181115103549.png)
+
+![image](images/20181115103549.png)
 
 
 
