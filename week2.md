@@ -48,7 +48,7 @@ $\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\th
 
 解出偏导得：
 
-$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\newline \rbrace\end{align*}​$
+$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\newline \rbrace\end{align*}$
 
 可展开为：
 
@@ -81,7 +81,7 @@ $$
 
  $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$
 
-对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1​$，类似于 $1\leqslant x \leqslant 3​$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 ​$，$-0.00001 \leqslant x \leqslant 0.00001​$，就显得过大/过小了。
+对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1$，类似于 $1\leqslant x \leqslant 3$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 $，$-0.00001 \leqslant x \leqslant 0.00001$，就显得过大/过小了。
 
 另外注意，一旦采用特征缩放，我们就需对所有的输入采用特征缩放，包括训练集、测试集、预测输入等。
 
