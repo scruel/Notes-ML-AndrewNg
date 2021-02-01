@@ -24,7 +24,9 @@
 
 参数向量的维度为 $n+1$，在特征向量中添加 $x_{0}$ 后，其维度也变为 $n+1$， 则运用线性代数，可简化 $h$：
 
-$h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; ... \;\theta_n \end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x$
+$$
+h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; ... \;\theta_n \end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x
+$$
 
 > $\theta^T$: $\theta$ 矩阵的转置
 >
@@ -44,15 +46,40 @@ $h_\theta\left(x\right)=\begin{bmatrix}\theta_0\; \theta_1\; ... \;\theta_n \end
 
 前文提到梯度下降对于最小化代价函数的通用性，则多变量梯度下降公式即
 
-$\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; &{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}}  \right) \newline \rbrace \end{align*}$
+$$
+\begin{align*}
+& \text{Repeat until convergence:} \; \lbrace \\
+&{{\theta }_{j}}:={{\theta }_{j}}-\alpha \frac{\partial }{\partial {{\theta }_{j}}}J\left( {\theta_{0}},{\theta_{1}}...{\theta_{n}}  \right) \\
+\rbrace
+\end{align*}
+$$
+
 
 解出偏导得：
 
-$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\newline \rbrace\end{align*}$
+$$
+\begin{align*}
+& \text{repeat until convergence:} \; \lbrace \\
+& \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0,1...n}\\
+\rbrace
+\end{align*}
+$$
+
 
 可展开为：
 
-$\begin{aligned} & \text{repeat until convergence:} \; \lbrace \newline \; & \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\newline \; & \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \newline \; & \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \newline & \vdots \newline \; & \theta_n := \theta_n - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_n^{(i)} &\newline \rbrace \end{aligned}$
+$$
+\begin{aligned}
+& \text{repeat until convergence:} \; \lbrace \\
+& \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\\
+& \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \\
+& \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \\
+& \vdots \\
+& \theta_n := \theta_n - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_n^{(i)} &\\
+\rbrace
+\end{aligned}
+$$
+
 
 当然，同单变量梯度下降一样，计算时需要**同时更新**所有参数。
 
@@ -79,7 +106,7 @@ $$
 
 除了以上图人工选择并除以一个参数的方式，**均值归一化(Mean normalization)**方法更为便捷，可采用它来对所有特征值统一缩放：
 
- $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}, 使得 $ $x_i \in (-1,1)$
+ $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}$, 使得  $x_i \in (-1,1)$
 
 对于特征的范围，并不一定需要使得 $-1 \leqslant x \leqslant 1$，类似于 $1\leqslant x \leqslant 3$ 等也是可取的，而诸如 $-100 \leqslant x \leqslant 100 $，$-0.00001 \leqslant x \leqslant 0.00001$，就显得过大/过小了。
 
@@ -148,14 +175,19 @@ $$
 [^2]: 梯度下降算法的普适性好，而对于特定的线性回归模型，正规方程是很好的替代品。
 
 **正规方程法的推导过程**：
-
-$\begin{aligned} & J\left( \theta  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\newline \; & =\frac{1}{2m}||X\theta-y||^2 \newline \; & =\frac{1}{2m}(X\theta-y)^T(X\theta-y) &\newline  \end{aligned}$
+$$
+\begin{aligned}
+J\left( \theta  \right)& =\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {h_{\theta}}\left( {x^{(i)}} \right)-{y^{(i)}} \right)}^{2}}}\\
+& =\frac{1}{2m}||X\theta-y||^2 \\
+& =\frac{1}{2m}(X\theta-y)^T(X\theta-y) \hspace{15cm}
+\end{aligned}
+$$
 
 展开上式可得
 
 $J(\theta )= \frac{1}{2m}\left( {{\theta }^{T}}{{X}^{T}}X\theta -{{\theta}^{T}}{{X}^{T}}y-{{y}^{T}}X\theta + {{y}^{T}}y \right)$
 
-注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则
+注意到 ${{\theta}^{T}}{{X}^{T}}y$ 与 ${{y}^{T}}X\theta$ 都为标量，实际上是等价的，则：
 
 $J(\theta) = \frac{1}{2m}[X^TX\theta-2\theta^TX^Ty+y^Ty]$
 
@@ -216,6 +248,8 @@ $$
 
 ## 5.6 向量化(Vectorization)
 
-$\sum\limits_{j=0}^n\theta_jx_j=\theta^Tx$
+$$
+\sum\limits_{j=0}^n\theta_jx_j=\theta^Tx
+$$
 
 ## 5.x 常用函数整理

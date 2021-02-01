@@ -87,8 +87,6 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
       > $\delta^{(l)}$ 求导前的公式不同于视频内容，经核实为视频内容错误。推导请阅下节。
 
-      ​
-
       根据以上公式计算依次每一层的误差 $\delta^{(L)}, \delta^{(L-1)},\dots,\delta^{(2)}$。
 
    3. 依次求解并累加误差 $\Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a_j^{(l)} \delta_i^{(l+1)}$，向量化实现即 $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$
@@ -284,7 +282,7 @@ end
 
 Octave/Matlab 代码：
 
-当然，初始权重的波动也不能太大，一般限定在极小值 $\epsilon​$ 范围内，即 $\Theta^{(l)}_{i,j} \in [-\epsilon, \epsilon]​$。
+当然，初始权重的波动也不能太大，一般限定在极小值 $\epsilon$ 范围内，即 $\Theta^{(l)}_{i,j} \in [-\epsilon, \epsilon]$。
 
 ```octave
 If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11.
