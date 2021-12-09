@@ -1,4 +1,8 @@
 # ML-AndrewNg-Notes
+[![github](https://img.shields.io/github/stars/scruel/ML-AndrewNg-Notes?logo=github&label=Stars)](https://github.com/scruel/ML-AndrewNg-Notes)
+[![star](https://img.shields.io/badge/dynamic/json?label=Stars&query=%24.stargazers_count&url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2Fscruel%2FML-AndrewNg-Notes&logo=gitee)](https://gitee.com/scruel/ML-AndrewNg-Notes)
+
+☕ Buy me a coffee: https://afdian.net/@scruel
 
 课程地址：
 
