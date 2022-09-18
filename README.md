@@ -1,6 +1,6 @@
-# ML-AndrewNg-Notes
-[![github](https://img.shields.io/github/stars/scruel/ML-AndrewNg-Notes?logo=github&label=Stars)](https://github.com/scruel/ML-AndrewNg-Notes)
-[![star](https://img.shields.io/badge/dynamic/json?label=Stars&query=%24.stargazers_count&url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2Fscruel%2FML-AndrewNg-Notes&logo=gitee)](https://gitee.com/scruel/ML-AndrewNg-Notes)
+# Notes-ML-AndrewNg
+[![github](https://img.shields.io/github/stars/scruel/Notes-ML-AndrewNg?logo=github&label=Stars)](https://github.com/scruel/Notes-ML-AndrewNg)
+[![star](https://img.shields.io/badge/dynamic/json?label=Stars&query=%24.stargazers_count&url=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Frepos%2Fscruel%2FNotes-ML-AndrewNg&logo=gitee)](https://gitee.com/scruel/Notes-ML-AndrewNg)
 
 💌 Sponsor this project: https://afdian.net/@scruel
 
@@ -26,7 +26,7 @@ https://www.coursera.org/learn/machine-learning
 
 ## Read
 
-1. **在线阅读地址**：http://scruel.gitee.io/ml-andrewng-notes/
+1. **在线阅读地址**：http://scruel.gitee.io/notes-ml-andrewng/
 
 2. 直接在 GitHub Page 上阅读，需安装 Chrome 插件 —— [GitHub with MathJax][GitHub with MathJax]（部分公式仍无法正常解析）。
 
@@ -47,7 +47,7 @@ https://www.coursera.org/learn/machine-learning
 
 
 
-如果遇到 Coursera 上提交编程作业失败的问题，以 [submitWithConfiguration.m](https://github.com/scruel/ML-AndrewNg-Notes/blob/master/assignments/submitWithConfiguration.m) 覆盖编程作业中 lib 文件夹下的同名文件即可解决。
+如果遇到 Coursera 上提交编程作业失败的问题，以 [submitWithConfiguration.m](https://github.com/scruel/Notes-ML-AndrewNg/blob/master/assignments/submitWithConfiguration.m) 覆盖编程作业中 lib 文件夹下的同名文件即可解决。
 
 ## Thanks
 
