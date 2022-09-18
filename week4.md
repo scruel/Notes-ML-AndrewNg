@@ -96,8 +96,6 @@ $h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{
 
 上面的计算过程被称为**前向传播（Forward propagation）**，即从输入层开始，一层一层地向下计算并传递结果。
 
-
-
 再回顾一下逻辑回归：
 
 ${h_\theta}\left( x \right)=g\left( {\theta_0}+{\theta_1}{x_1}+{\theta_{2}}{x_{2}}+{\theta_{3}}x_3 \right)$

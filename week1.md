@@ -107,7 +107,7 @@
 
 在鸡尾酒会上，大家说话声音彼此重叠，几乎很难分辨出面前的人说了什么。我们很难对于这个问题进行数据标注，而这里的通过机器学习的无监督学习算法，就可以将说话者的声音同背景音乐分离出来，看视频，效果还不错呢\~~。
 
-嗯，这块是打打鸡血的，只需要一行代码就解决了问题，就是这么简单！当然，我没复现过 ^_^……
+嗯，这块是打打鸡血的，只需要一行代码就解决了问题，就是这么简单！当然，我没复现过 \^\_\^……
 
 神奇的一行代码：
 `[W,s,v] = svd((repmat(sum(x.*x,1),size(x,1),1).*x)*x');`
@@ -259,7 +259,7 @@ $$
 > ”:=“: 赋值操作符
 >
 > $\alpha$: 学习速率（learning rate）, $\alpha > 0$
->
+> 
 > $\frac{\partial }{\partial {{\theta }_{j}}}J\left( \theta_0, \theta_1  \right)$: $J\left( \theta_0, \theta_1 \right)$ 的偏导
 
 公式中，学习速率决定了参数值变化的速率即”**走多少距离**“，而偏导这部分决定了下降的方向即”**下一步往哪里**“走（当然实际上的走多少距离是由偏导值给出的，学习速率起到调整后决定的作用），收敛处的局部最小值又叫做极小值，即”**陆地**“。
@@ -362,7 +362,7 @@ $$
 
 ## 3.1 Matrices and Vectors
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % The ; denotes we are going back to a new row.
@@ -415,7 +415,7 @@ A_23 =  6
 
 ## 3.2 Addition and Scalar Multiplication
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % Initialize matrix A and B 
@@ -482,7 +482,7 @@ add_As =
 ```
 ## 3.3 Matrix Vector Multiplication
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % Initialize matrix A 
@@ -521,7 +521,7 @@ Av =
 ```
 ## 3.4 Matrix Matrix Multiplication
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % Initialize a 3 by 2 matrix 
@@ -559,7 +559,7 @@ mult_AB =
 ```
 ## 3.5 Matrix Multiplication Properties
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % Initialize random matrices A and B 
@@ -628,7 +628,7 @@ BA =
 ```
 ## 3.6 Inverse and Transpose
 
-Octave/Matlab 代码:
+Octave 代码:
 
 ```matlab
 % Initialize matrix A 

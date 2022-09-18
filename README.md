@@ -16,7 +16,7 @@ https://www.coursera.org/learn/machine-learning
 
 本项目包含课程中的课后作业以及笔记：
 
-1. 笔记(notes)都为中文，为了便于复习和扩充等，尽量会按照视频目录，以及视频内容进行提炼整理。
+1. 笔记（notes）都为中文，为了便于复习和扩充等，尽量会按照视频目录，以及视频内容进行提炼整理。
 2. 遵循[荣誉准则][honor code]，现已移除已通过的课后编程作业的源代码，之后会改为指导笔记形式陆续更新。
 
 感谢关注，欢迎分享。
@@ -32,7 +32,7 @@ https://www.coursera.org/learn/machine-learning
 
 3. 下载 .html 网页文件及 笔记图片 image 文件夹，浏览器打开阅读。
 
-4. 笔记源码(.md)基于支持 LaTeX 的 markdown 编辑器 [Typora][Typora]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
+4. 笔记源码（.md）基于支持 LaTeX 的 markdown 编辑器 [Typora][Typora]，其他类似的编辑器也可以阅读及编辑，注意其他编辑器可能会产生排版问题。
 
 
 ## Resources

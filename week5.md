@@ -221,9 +221,9 @@ $$
 
 说白了，这个技巧就是把多个矩阵转换为一个长长的向量，便于传入函数，之后再根据矩阵维度，转回矩阵即可。
 
-Octave/Matlab 代码：
+Octave 代码：
 
-```octave
+```matlab
 % 多个矩阵展开为一个向量
 Theta1 = ones(11, 10);    % 创建维度为 11 * 10 的矩阵
 Theta2 = ones(2, 4) * 2;  % 创建维度为 2 * 4 的矩阵
@@ -253,9 +253,9 @@ Theta2 = reshape(ThetaVec(111:118), 2, 4)
 
 对于矩阵 $\Theta$，有 $\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}$
 
-Octave/Matlab 代码：
+Octave 代码：
 
-```octave
+```matlab
 epsilon = 1e-4;
 for i = 1:n,
   thetaPlus = theta;
@@ -278,11 +278,11 @@ end
 
 随机初始化权重矩阵也为实现细节之一，用于打破对称性（Symmetry Breaking），使得 $\Theta^{(l)}_{ij} \in [-\epsilon,\epsilon]$ 。
 
-Octave/Matlab 代码：
+Octave 代码：
 
 当然，初始权重的波动也不能太大，一般限定在极小值 $\epsilon$ 范围内，即 $\Theta^{(l)}_{i,j} \in [-\epsilon, \epsilon]$。
 
-```octave
+```matlab
 If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11.
 
 Theta1 = rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
