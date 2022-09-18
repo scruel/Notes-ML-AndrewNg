@@ -1,8 +1,6 @@
-[TOC]
+# 10 机器学习的应用建议（Advice for Applying Machine Learning）
 
-# 10 机器学习的应用建议(Advice for Applying Machine Learning) 
-
-## 10.1 决定下一步该做什么(Deciding What to Try Next)
+## 10.1 决定下一步该做什么（Deciding What to Try Next）
 
 ## 10.2 Evaluating a Hypothesis
 

@@ -1,8 +1,6 @@
-[TOC]
+# 4 多变量线性回归（Linear Regression with Multiple Variables）
 
-# 4 多变量线性回归(Linear Regression with Multiple Variables)
-
-## 4.1 多特征(Multiple Features)
+## 4.1 多特征（Multiple Features）
 
 对于一个要度量的对象，一般来说会有不同维度的多个特征。比如之前的房屋价格预测例子中，除了房屋的面积大小，可能还有房屋的年限、房屋的层数等等其他特征：
 
@@ -38,7 +36,7 @@ $$
 
 
 
-## 4.2 多变量梯度下降(Gradient Descent for Multiple Variables)
+## 4.2 多变量梯度下降（Gradient Descent for Multiple Variables）
 
 多变量代价函数类似于单变量代价函数，
 
@@ -83,14 +81,14 @@ $$
 
 当然，同单变量梯度下降一样，计算时需要**同时更新**所有参数。
 
-$h_\theta\left(x\right)= \theta^T x$，则得到同时更新参数的向量化(Vectorization)实现：
+$h_\theta\left(x\right)= \theta^T x$，则得到同时更新参数的向量化（Vectorization）实现：
 $$
 \theta = \theta - \alpha \frac{1}{m}(X^T(X\theta-y))
 $$
 
 > $X$: 训练集数据，$m\times(n+1)$ 维矩阵（包含基本特征 $x_0=1$）
 
-## 4.3 梯度下降实践1-特征值缩放(Gradient Descent in Practice I - Feature Scaling)
+## 4.3 梯度下降实践1-特征值缩放（Gradient Descent in Practice I - Feature Scaling）
 
 在应用梯度下降算法实践时，由于各特征值的范围不一，可能会影响代价函数收敛速度。
 
@@ -104,7 +102,7 @@ $$
 
 为了优化梯度下降的收敛速度，采用特征缩放的技巧，使各特征值的**范围尽量一致**。
 
-除了以上图人工选择并除以一个参数的方式，**均值归一化(Mean normalization)**方法更为便捷，可采用它来对所有特征值统一缩放：
+除了以上图人工选择并除以一个参数的方式，**均值归一化（Mean normalization）**方法更为便捷，可采用它来对所有特征值统一缩放：
 
  $x_i:=\frac{x_i-average(x)}{maximum(x)-minimum(x)}$, 使得  $x_i \in (-1,1)$
 
@@ -112,7 +110,7 @@ $$
 
 另外注意，一旦采用特征缩放，我们就需对所有的输入采用特征缩放，包括训练集、测试集、预测输入等。
 
-## 4.4 梯度下降实践2-学习速率(Gradient Descent in Practice II - Learning Rate)
+## 4.4 梯度下降实践2-学习速率（Gradient Descent in Practice II - Learning Rate）
 
 通常，有两种方法来确定函数是否收敛
 
@@ -136,11 +134,11 @@ $$
 
 通过不断改变 $\alpha$ 值，绘制并观察图像，并以此来确定合适的学习速率。 尝试时可取 $\alpha$ 如 $\dots\;0,001,\;0.003,\;0.01,\;0.03,\;0.1,\;\dots$
 
-## 4.5 特征和多项式回归(Features and Polynomial Regression)
+## 4.5 特征和多项式回归（Features and Polynomial Regression）
 
 在特征选取时，我们也可以自己归纳总结，定义一个新的特征，用来**取代或拆分**旧的一个或多个特征。比如，对于房屋面积特征来说，我们可以将其拆分为长度和宽度两个特征，反之，我们也可以合并长度和宽度这两个特征为面积这一个特征。
 
-线性回归只能以直线来对数据进行拟合，有时候需要使用**曲线**来对数据进行拟合，即**多项式回归(Polynomial Regression)**。
+线性回归只能以直线来对数据进行拟合，有时候需要使用**曲线**来对数据进行拟合，即**多项式回归（Polynomial Regression）**。
 
 比如一个二次方模型：$h_{\theta}\left( x \right)={\theta_{0}}+{\theta_{1}}{x_{1}}+{\theta_{2}}{x_{2}^2}$
 
@@ -152,7 +150,7 @@ $$
 
 在使用多项式回归时，要记住非常有必要进行特征缩放，比如 $x_1$ 的范围为 1-1000，那么 $x_1^2$ 的范围则为 1- 1000000，不适用特征缩放的话，范围更有不一致，也更易影响效率。
 
-## 4.6 正规方程(Normal Equation)
+## 4.6 正规方程（Normal Equation）
 
 对于一些线性回归问题来说，正规方程法给出了一个更好的解决问题的方式。
 
@@ -208,7 +206,7 @@ $$
 
 
 
-## 4.7 不可逆性正规方程(Normal Equation Noninvertibility)
+## 4.7 不可逆性正规方程（Normal Equation Noninvertibility）
 
 （本部分内容为选讲）
 
@@ -220,7 +218,7 @@ $$
 
   即 ${x_{1}}={x_{2}}*{{\left( 3.28 \right)}^{2}}$。
 
-- 特征数量大于训练集的数量$\left(m \leqslant n \right)$。
+- 特征数量大于训练集的数量 $\left(m \leqslant n \right)$。
 
 
 如果发现 $X^TX$ 的结果不可逆，可尝试：
@@ -246,7 +244,7 @@ $$
 
 ## 5.5 Control Statements: for, while, if statement
 
-## 5.6 向量化(Vectorization)
+## 5.6 向量化（Vectorization）
 
 $$
 \sum\limits_{j=0}^n\theta_jx_j=\theta^Tx

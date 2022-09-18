@@ -1,6 +1,4 @@
-[TOC]
-
-# 1. 引言(Introduction)
+# 1. 引言（Introduction）
 
 ## 1.1 Welcome
 
@@ -18,7 +16,7 @@
 
 - 数据挖掘
   - 网页点击流数据分析
-- 人工无法处理的工作(量大)
+- 人工无法处理的工作（量大）
   - 手写识别
   - 计算机视觉
 - 个人定制
@@ -26,7 +24,7 @@
 - 研究大脑
 - ……
 
-## 1.2 什么是机器学习(What is Machine Learning)
+## 1.2 什么是机器学习（What is Machine Learning）
 1. 机器学习定义
     这里主要有两种定义：
 
@@ -59,12 +57,12 @@
    - 迁移学习
 
 
-## 1.3 监督学习(Supervised Learning)
+## 1.3 监督学习（Supervised Learning）
 监督学习，即为教计算机如何去完成预测任务（有反馈），预先给一定数据量的输入**和对应的结果**即训练集，建模拟合，最后让计算机预测未知数据的结果。
 
 监督学习一般有两种：
 
-1. 回归问题(Regression)
+1. 回归问题（Regression）
 
    回归问题即为预测一系列的**连续值**。
 
@@ -72,7 +70,7 @@
 
    ![](images/20180105_194712.png)
 
-2. 分类问题(Classification)
+2. 分类问题（Classification）
 
    分类问题即为预测一系列的**离散值**。
 
@@ -82,21 +80,21 @@
 
    ![](images/20180105_194839.png)
 
-视频中提到**支持向量机**这个算法，旨在解决当特征量很大的时候(特征即如癌症例子中的肿块大小，颜色，气味等各种特征)，计算机内存一定会不够用的情况。**支持向量机能让计算机处理无限多个特征。**
+视频中提到**支持向量机**这个算法，旨在解决当特征量很大的时候（特征即如癌症例子中的肿块大小，颜色，气味等各种特征），计算机内存一定会不够用的情况。**支持向量机能让计算机处理无限多个特征。**
 
 
-## 1.4 无监督学习(Unsupervised Learning)
+## 1.4 无监督学习（Unsupervised Learning）
 
 相对于监督学习，训练集不会有人为标注的结果（无反馈），我们**不会给出**结果或**无法得知**训练集的结果是什么样，而是单纯由计算机通过无监督学习算法自行分析，从而“得出结果”。计算机可能会把特定的数据集归为几个不同的簇，故叫做聚类算法。
 
 无监督学习一般分为两种：
-1. 聚类(Clustering)
+1. 聚类（Clustering）
    - 新闻聚合
    - DNA 个体聚类
    - 天文数据分析
    - 市场细分
    - 社交网络分析
-2. 非聚类(Non-clustering)
+2. 非聚类（Non-clustering）
    - 鸡尾酒问题
 
 **新闻聚合**
@@ -123,9 +121,9 @@
 >
 > 机器学习领域发展迅速，现在也可使用 Tensorflow 等开源机器学习框架编写机器学习代码，这些框架十分友好，易于编写及应用。
 
-# 2 单变量线性回归(Linear Regression with One Variable)
+# 2 单变量线性回归（Linear Regression with One Variable）
 
-## 2.1 模型表示(Model Representation)
+## 2.1 模型表示（Model Representation）
 
 1. 房价预测训练集
 | Size in $feet^2$ ($x$) | Price (\$) in 1000's($y$) |
@@ -142,25 +140,25 @@
 
 ![](images/20180105_212048.png)
 
-其中 $h$ 代表结果函数，也称为**假设(hypothesis)** 。假设函数根据输入(房屋的面积)，给出预测结果输出(房屋的价格)，即是一个 $X\to Y$ 的映射。
+其中 $h$ 代表结果函数，也称为**假设（hypothesis）** 。假设函数根据输入（房屋的面积），给出预测结果输出（房屋的价格），即是一个 $X\to Y$ 的映射。
 
 $h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式。
 
 > $x$: 特征/输入变量。
 
-上式中，$\theta$ 为参数，$\theta$ 的变化才决定了输出结果，不同以往，这里的 $x$ 被我们**视作已知**(不论是数据集还是预测时的输入)，所以怎样解得 $\theta$ 以更好地拟合数据，成了求解该问题的最终问题。
+上式中，$\theta$ 为参数，$\theta$ 的变化才决定了输出结果，不同以往，这里的 $x$ 被我们**视作已知**（不论是数据集还是预测时的输入），所以怎样解得 $\theta$ 以更好地拟合数据，成了求解该问题的最终问题。
 
-单变量，即只有一个特征(如例子中房屋的面积这个特征)。
+单变量，即只有一个特征（如例子中房屋的面积这个特征）。
 
-## 2.2 代价函数(Cost Function)
+## 2.2 代价函数（Cost Function）
 
 > 李航《统计学习方法》一书中，损失函数与代价函数两者为**同一概念**，未作细分区别，全书没有和《深度学习》一书一样混用，而是统一使用**损失函数**来指代这类类似概念。
 >
-> 吴恩达(Andrew Ng)老师在其公开课中对两者做了细分。**如果要听他的课做作业，不细分这两个概念是会被打小手扣分的**！这也可能是因为老师发现了业内混用的乱象，想要治一治吧。
+> 吴恩达（Andrew Ng）老师在其公开课中对两者做了细分。**如果要听他的课做作业，不细分这两个概念是会被打小手扣分的**！这也可能是因为老师发现了业内混用的乱象，想要治一治吧。
 >
-> **损失函数**(Loss/Error Function): 计算**单个**样本的误差。[link](https://www.coursera.org/learn/neural-networks-deep-learning/lecture/yWaRd/logistic-regression-cost-function)
+> **损失函数**（Loss/Error Function）: 计算**单个**样本的误差。[link](https://www.coursera.org/learn/neural-networks-deep-learning/lecture/yWaRd/logistic-regression-cost-function)
 >
-> **代价函数**(Cost Function): 计算整个训练集**所有损失函数之和的平均值**
+> **代价函数**（Cost Function）: 计算整个训练集**所有损失函数之和的平均值**
 >
 > 
 >
@@ -184,7 +182,7 @@ $h_\theta(x)=\theta_0+\theta_1x$，为解决房价问题的一种可行表达式
 
 上图展示了当 $\theta$ 取不同值时，$h_\theta\left(x\right)$ 对数据集的拟合情况，蓝色虚线部分代表**建模误差**（预测结果与实际结果之间的误差），我们的目标就是最小化所有误差之和。
 
-为了求解最小值，引入代价函数(Cost Function)概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：
+为了求解最小值，引入代价函数（Cost Function）概念，用于度量建模误差。考虑到要计算最小值，应用二次函数对求和式建模，即应用统计学中的平方损失函数（最小二乘法）：
 
 $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y_{i} \right)^2=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(h_\theta(x_{i})-y_{i}\right)^2$$ 
 
@@ -194,14 +192,14 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 
 讨论到这里，我们的问题就转化成了**求解 $J\left( \theta_0, \theta_1  \right)$ 的最小值**。
 
-## 2.3 代价函数 - 直观理解1(Cost Function - Intuition I)
+## 2.3 代价函数 - 直观理解1（Cost Function - Intuition I）
 
 根据上节视频，列出如下定义：
 
-- 假设函数(Hypothesis): $h_\theta(x)=\theta_0+\theta_1x$
-- 参数(Parameters): $\theta_0, \theta_1$
-- 代价函数(Cost Function): $J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}}$
-- 目标(Goal): $\underset{\theta_0, \theta_1}{\text{minimize}} J \left(\theta_0, \theta_1 \right)$
+- 假设函数（Hypothesis）: $h_\theta(x)=\theta_0+\theta_1x$
+- 参数（Parameters）: $\theta_0, \theta_1$
+- 代价函数（Cost Function）: $J\left( \theta_0, \theta_1  \right)=\frac{1}{2m}\sum\limits_{i=1}^{m}{{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}^{2}}}$
+- 目标（Goal）: $\underset{\theta_0, \theta_1}{\text{minimize}} J \left(\theta_0, \theta_1 \right)$
 
 为了直观理解代价函数到底是在做什么，先假设 $\theta_1 = 0$，并假设训练集有三个数据，分别为$\left(1, 1\right), \left(2, 2\right), \left(3, 3\right)$，这样在平面坐标系中绘制出 $h_\theta\left(x\right)$ ，并分析 $J\left(\theta_0, \theta_1\right)$ 的变化。
 
@@ -209,7 +207,7 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 
 右图 $J\left(\theta_0, \theta_1\right)$ 随着 $\theta_1$ 的变化而变化，可见**当 $\theta_1 = 1$ 时，$J\left(\theta_0, \theta_1 \right) = 0$，取得最小值，**对应于左图青色直线，即函数 $h$ 拟合程度最好的情况。
 
-## 2.4 代价函数 - 直观理解2(Cost Function - Intuition II)
+## 2.4 代价函数 - 直观理解2（Cost Function - Intuition II）
 
 > 注：该部分由于涉及到了多变量成像，可能较难理解，要求只需要理解上节内容即可，该节如果不能较好理解可跳过。
 
@@ -221,7 +219,7 @@ $$J(\theta_0,\theta_1)=\dfrac{1}{2m}\displaystyle\sum_{i=1}^m\left(\hat{y}_{i}-y
 
 ![](images/20180106_090904.png)
 
-由于3-D图形不便于标注，所以将3-D图形转换为**轮廓图(contour plot)**，下面用轮廓图（下图中的右图）来作直观理解，其中相同颜色的一个圈代表着同一高度（同一 $J\left(\theta\right)$ 值）。
+由于3-D图形不便于标注，所以将3-D图形转换为**轮廓图（contour plot）**，下面用轮廓图（下图中的右图）来作直观理解，其中相同颜色的一个圈代表着同一高度（同一 $J\left(\theta\right)$ 值）。
 
 $\theta_0 = 360, \theta_1 =0$ 时：
 
@@ -233,11 +231,11 @@ $\theta_0 = 360, \theta_1 =0$ 时：
 
 上图中最中心的点（红点），近乎为图像中的最低点，也即代价函数的最小值，此时对应 $h_\theta\left(x\right)$ 对数据的拟合情况如左图所示，嗯，一看就拟合的很不错，预测应该比较精准啦。
 
-## 2.5 梯度下降(Gradient Descent)
+## 2.5 梯度下降（Gradient Descent）
 
-在特征量很大的情况下，即便是借用计算机来生成图像，人工的方法也很难读出 $J\left(\theta\right)$ 的最小值，并且大多数情况无法进行可视化，故引入**梯度下降(Gradient Descent)方法，让计算机自动找出最小化代价函数时对应的 $\theta$ 值。**
+在特征量很大的情况下，即便是借用计算机来生成图像，人工的方法也很难读出 $J\left(\theta\right)$ 的最小值，并且大多数情况无法进行可视化，故引入**梯度下降（Gradient Descent）方法，让计算机自动找出最小化代价函数时对应的 $\theta$ 值。**
 
-梯度下降背后的思想是：开始时，我们随机选择一个参数组合$\left( {\theta_{0}},{\theta_{1}},......,{\theta_{n}} \right)$即起始点，计算代价函数，然后寻找下一个能使得代价函数下降最多的参数组合。不断迭代，直到找到一个**局部最小值(local minimum)**，由于下降的情况只考虑当前参数组合周围的情况，所以无法确定当前的局部最小值是否就是**全局最小值(global minimum)**，不同的初始参数组合，可能会产生不同的局部最小值。
+梯度下降背后的思想是：开始时，我们随机选择一个参数组合$\left( {\theta_{0}},{\theta_{1}},......,{\theta_{n}} \right)$即起始点，计算代价函数，然后寻找下一个能使得代价函数下降最多的参数组合。不断迭代，直到找到一个**局部最小值（local minimum）**，由于下降的情况只考虑当前参数组合周围的情况，所以无法确定当前的局部最小值是否就是**全局最小值（global minimum）**，不同的初始参数组合，可能会产生不同的局部最小值。
 
 下图根据不同的起始点，产生了两个不同的局部最小值。
 
@@ -260,7 +258,7 @@ $$
 >
 > ”:=“: 赋值操作符
 >
-> $\alpha$: 学习速率(learning rate), $\alpha > 0$
+> $\alpha$: 学习速率（learning rate）, $\alpha > 0$
 >
 > $\frac{\partial }{\partial {{\theta }_{j}}}J\left( \theta_0, \theta_1  \right)$: $J\left( \theta_0, \theta_1 \right)$ 的偏导
 
@@ -270,7 +268,7 @@ $$
 
 注意，在计算时要**批量更新 $\theta$ 值**，即如上图中的左图所示，否则结果上会有所出入，原因不做细究。
 
-## 2.6 梯度下降直观理解(Gradient Descent Intuition)
+## 2.6 梯度下降直观理解（Gradient Descent Intuition）
 
 该节探讨 $\theta_1$ 的梯度下降更新过程，即 $\theta_1 := \theta_1 - \alpha\frac{d}{d\theta_1}J\left(\theta_1\right)$，此处为了数学定义上的精确性，用的是 $\frac{d}{d\theta_1}J\left(\theta_1\right)$，如果不熟悉微积分学，就把它视作之前的 $\frac{\partial}{\partial\theta}$ 即可。
 
@@ -306,7 +304,7 @@ $$
 
 **最后，梯度下降不止可以用于线性回归中的代价函数，还通用于最小化其他的代价函数。**
 
-## 2.7 线性回归中的梯度下降(Gradient Descent For Linear Regression)
+## 2.7 线性回归中的梯度下降（Gradient Descent For Linear Regression）
 
 线性回归模型
 
@@ -350,13 +348,13 @@ $$
 $$
 \frac{\partial}{\partial\theta_1} J(\theta)=\frac{1}{m}\sum\limits_{i=1}^{m}{{\left( {{h}_{\theta }}\left( {{x}^{(i)}} \right)-{{y}^{(i)}} \right)}} *x_1^{(i)}
 $$
-上文中所提到的梯度下降，都为批量梯度下降(Batch Gradient Descent)，即每次计算都使用**所有**的数据集 $\left(\sum\limits_{i=1}^{m}\right)$ 更新。
+上文中所提到的梯度下降，都为批量梯度下降（Batch Gradient Descent），即每次计算都使用**所有**的数据集 $\left(\sum\limits_{i=1}^{m}\right)$ 更新。
 
 由于线性回归函数呈现**碗状**，且**只有一个**全局的最优值，所以函数**一定总会**收敛到全局最小值（学习速率不可过大）。同时，函数 $J$ 被称为**凸二次函数**，而线性回归函数求解最小值问题属于**凸函数优化问题**。
 
 ![](images/24e9420f16fdd758ccb7097788f879e7.png)
 
-另外，使用循环求解，代码较为冗余，后面会讲到如何使用**向量化(Vectorization)**来简化代码并优化计算，使梯度下降运行的更快更好。
+另外，使用循环求解，代码较为冗余，后面会讲到如何使用**向量化（Vectorization）**来简化代码并优化计算，使梯度下降运行的更快更好。
 
 # 3 Linear Algebra Review
 

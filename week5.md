@@ -1,18 +1,16 @@
-[TOC]
+# 9 神经网络: 学习（Neural Networks: Learning）
 
-# 9 神经网络: 学习(Neural Networks: Learning)
-
-## 9.1 代价函数(Cost Function)
+## 9.1 代价函数（Cost Function）
 
 神经网络的分类问题有两种：
 
-- 二元分类问题(0/1分类)
+- 二元分类问题（0/1分类）
 
-  只有一个输出单元 ($K=1$)
+  只有一个输出单元（$K=1$）
 
-- 多元($K$)分类问题
+- 多元（$K$）分类问题
 
-  输出单元不止一个($K\gt1$)
+  输出单元不止一个（$K\gt1$）
 
 神经网络的代价函数公式：
 
@@ -49,9 +47,9 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 >
 > $\mathbb{R}^{m\times n}$: 即 $m \times n$ 维矩阵
 
-再次可见，神经网络背后的思想是和逻辑回归一样的，但由于计算复杂，实际上神经网络的代价函数 $J(\Theta)$ 是一个非凸(non-convex)函数。
+再次可见，神经网络背后的思想是和逻辑回归一样的，但由于计算复杂，实际上神经网络的代价函数 $J(\Theta)$ 是一个非凸（non-convex）函数。
 
-## 9.2 反向传播算法(Backpropagation Algorithm)
+## 9.2 反向传播算法（Backpropagation Algorithm）
 
 类似于回归模型中的梯度下降算法，为了求解神经网络最优化问题，我们也要计算 $\frac{\partial}{\partial\Theta}J(\Theta)$，以此 $\underset{\Theta}{\text{minimize}}J(\Theta)$ 。
 
@@ -67,7 +65,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 
    1. 运行前向传播算法，得到初始预测 $a^{(L)}=h_\Theta(x)$ 。
 
-   2. 运行反向传播算法，从输出层开始计算每一层预测的**误差**(error)，以此来求取偏导。
+   2. 运行反向传播算法，从输出层开始计算每一层预测的**误差（error）**，以此来求取偏导。
 
       ![](images/20180120_105744.png)
 
@@ -123,7 +121,7 @@ $J(\theta) = - \frac{1}{m} \sum_{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (
 >
 > 任何函数都可由三层神经网络以任意程度逼近。
 
-## 9.3 直观理解反向传播(Backpropagation Intuition)
+## 9.3 直观理解反向传播（Backpropagation Intuition）
 
 这节给出了反向传播算法中误差的数学意义：
 
@@ -157,7 +155,7 @@ $J(\Theta) ={y}\log \left( 1+{{e}^{-z^{(L)}}} \right)+\left( 1-{y} \right)\log \
 
 ![](images/20180121_110111.png)
 
-再次为了便于计算，我们用到如上图这个三层(输入层一般不计数)神经网络。
+再次为了便于计算，我们用到如上图这个三层（输入层一般不计数）神经网络。
 
 忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，我们有 $h_\Theta(x)=a^{(4)}= g(z^{(4)})=g(\Theta^{(3)}a^{(3)})$
 
@@ -217,7 +215,7 @@ $$
 
 证明结束，留个课后作业呀，自己来计算一下 $J(\Theta)$ 关于 $\Theta^{(1)}$ 的偏导，是不是能得到同样的结果？
 
-## 9.4 实现注意点: 参数展开(Implementation Note: Unrolling Parameters)
+## 9.4 实现注意点: 参数展开（Implementation Note: Unrolling Parameters）
 
 在 Octave/Matlab 中，如果要使用类似于 `fminunc` 等高级最优化函数，其函数参数、函数返回值等都为且只为向量，而由于神经网络中的权重是多维矩阵，所以需要用到参数展开这个技巧。
 
@@ -239,11 +237,11 @@ Theta2 = reshape(ThetaVec(111:118), 2, 4)
 
 > `reshape(A,m,n)`: 将向量 A 重构为 m * n 维矩阵。
 
-## 9.5 梯度检验(Gradient Checking)
+## 9.5 梯度检验（Gradient Checking）
 
 由于神经网络模型中的反向传播算法较为复杂，在小细节非常容易出错，从而无法得到最优解，故引入梯度检验。
 
-梯度检验采用数值估算(Numerical estimation)梯度的方法，被用于验证反向传播算法的正确性。
+梯度检验采用数值估算（Numerical estimation）梯度的方法，被用于验证反向传播算法的正确性。
 
 ![](images/20180125_162704.png)
 
@@ -272,13 +270,13 @@ end
 
 在确认算法**没有问题后**（一般只需运行一次），由于数值估计的梯度检验效率很低，所以一定要**禁用它**。
 
-## 9.6 随机初始化(Random Initialization)
+## 9.6 随机初始化（Random Initialization）
 
 逻辑回归中，初始参数向量全为 0 没什么问题，在神经网络中，情况就不一样了。
 
 初始权重如果全为 0，忆及 $z^{(l)} = \Theta^{(l-1)}a^{(l-1)}$，则隐藏层除了偏置单元，都为 0，而每个单元求导的值也都一样，这就相当于是在不断**重复计算同一结果**，也就是算着算着，一堆特征在每一层都变成只有一个特征（虽然有很多单元，但值都相等），这样，神经网络的性能和效果都会大打折扣，故需要随机初始化初始权重。
 
-随机初始化权重矩阵也为实现细节之一，用于打破对称性(Symmetry Breaking)，使得 $\Theta^{(l)}_{ij} \in [-\epsilon,\epsilon]$ 。
+随机初始化权重矩阵也为实现细节之一，用于打破对称性（Symmetry Breaking），使得 $\Theta^{(l)}_{ij} \in [-\epsilon,\epsilon]$ 。
 
 Octave/Matlab 代码：
 
@@ -292,11 +290,11 @@ Theta2 = rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 Theta3 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 ```
 
-> `rand(m,n)`: 返回一个在区间 (0,1) 内均匀分布的随机矩阵。
+> `rand(m,n)`: 返回一个在区间 $(0,1)$ 内均匀分布的随机矩阵。
 >
 > $\epsilon$: 和梯度下降中的 $\epsilon$ 没有联系，这里只是一个任意实数，给定了权重矩阵初始化值的范围。
 
-## 9.7 综合起来(Putting It Together)
+## 9.7 综合起来（Putting It Together）
 
 一般来说，应用神经网络有如下步骤：
 
@@ -325,7 +323,7 @@ Theta3 = rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 
 
 
-## 9.8 自主驾驶(Autonomous Driving)
+## 9.8 自主驾驶（Autonomous Driving）
 
 ![](images/20180125_195029.png)
 

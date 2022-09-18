@@ -1,5 +1,3 @@
-[TOC]
-
 # 13 Unsupervised Learning
 
 ## 13.1 Unsupervised Learning_ Introduction

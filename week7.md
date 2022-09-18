@@ -1,5 +1,3 @@
-[TOC]
-
 # 12 Support Vector Machines
 
 ## 12.1 Optimization Objective
