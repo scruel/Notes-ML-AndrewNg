@@ -9,7 +9,11 @@
   
   <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
   <link rel="stylesheet" media="(prefers-color-scheme: light)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-  
+  <style>
+    .github-corner{
+      position: fixed;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -26,6 +30,10 @@
       executeScript: true,
       mergeNavbar: true,
 
+      themeable: {
+        responsiveTables: false // default
+      },
+      
       search: {
         maxAge: 86400000,
         paths: 'auto', // or 'auto'
@@ -75,9 +83,9 @@
   <!-- theme -->
   <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
   
-  <!-- mathjax -->
+  <!-- math -->
   <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-latex@latest/dist/docsify-latex.min.js"></script>
+ <script src="//cdn.jsdelivr.net/npm/docsify-latex@0/dist/docsify-latex.min.js"></script>
 
 </body>
 </html>
