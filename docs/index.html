@@ -57,12 +57,19 @@
           '/': '下一章节'
         },
       },
-      // markdown: {
-      //   breaks: true,
-      // },
       latex: {
         inlineMath: [['$', '$']],
         displayMath: [ ['$$', '$$']],
+        customOptions: {
+          TeX: {
+            equationNumbers: { autoNumber: "AMS" },
+            Macros: {
+              diffd: "\\,\\mathrm d",
+              diffop: "D"
+            }
+          }
+        },
+        overflowScroll: false
       }
     }
   </script>
@@ -84,8 +91,8 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
   
   <!-- math -->
-  <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
- <script src="//cdn.jsdelivr.net/npm/docsify-latex@0/dist/docsify-latex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
 
 </body>
 </html>
