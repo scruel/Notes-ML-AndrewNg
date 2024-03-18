@@ -93,12 +93,11 @@
   <!-- math -->
   <script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
-  <!-- temp workaround for docsify#1891-->
-  <script>
+</body>
+<!-- temp workaround for docsify#1891-->
+<script>
   document.querySelectorAll('img.medium-zoom-image').forEach(img => {
     img.setAttribute('src', img.getAttribute('src').replace(/week\d+\//g, ''));
   });
-  </script>
-
-</body>
+</script>
 </html>
